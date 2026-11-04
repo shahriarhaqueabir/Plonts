@@ -2,6 +2,7 @@ pub mod calendar;
 pub mod catalog;
 pub mod gardens;
 pub mod guides;
+pub mod harvests;
 pub mod journal;
 pub mod migrations;
 pub mod planted;
