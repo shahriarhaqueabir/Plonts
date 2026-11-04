@@ -11,9 +11,11 @@ struct ListGuidesArgs { filters: Option<GuideFilters> }
 struct GetGuideArgs { id: String }
 
 #[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 struct SaveProgressArgs { guide_id: String, current_step: i64, completed: bool }
 
 #[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 struct BookmarkArgs { guide_id: String, bookmarked: bool }
 
 #[derive(serde::Serialize)]
