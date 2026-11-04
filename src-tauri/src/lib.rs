@@ -22,7 +22,13 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             commands::settings::get_settings,
-            commands::settings::update_settings
+            commands::settings::update_settings,
+            commands::gardens::list_gardens,
+            commands::gardens::create_garden,
+            commands::gardens::delete_garden,
+            commands::gardens::list_beds,
+            commands::gardens::create_bed,
+            commands::gardens::delete_bed
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
