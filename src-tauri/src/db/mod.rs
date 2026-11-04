@@ -6,6 +6,7 @@ pub mod migrations;
 pub mod planted;
 pub mod seed;
 pub mod settings;
+pub mod tips;
 use std::path::Path;
 
 use rusqlite::Connection;
