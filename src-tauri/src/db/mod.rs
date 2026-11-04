@@ -7,6 +7,7 @@ pub mod migrations;
 pub mod planted;
 pub mod problems;
 pub mod seed;
+pub mod seeds;
 pub mod settings;
 pub mod tips;
 use std::path::Path;
