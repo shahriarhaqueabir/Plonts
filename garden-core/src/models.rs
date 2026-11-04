@@ -228,3 +228,135 @@ pub struct WeatherSnapshot {
     pub fetched_at: Option<String>,
     pub cached: bool,
 }
+
+// ---------- Guides ----------
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum GuideTopic {
+    Soil,
+    Composting,
+    Pruning,
+    Propagation,
+    Pests,
+    Seasonal,
+}
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum SkillLevel {
+    #[default]
+    Beginner,
+    Intermediate,
+    Advanced,
+}
+
+/// A single step in a guide, with a checklist of tools/materials/actions.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct GuideStep {
+    pub id: String,
+    pub title: String,
+    pub body: String,
+    #[serde(default)]
+    pub checklist: Vec<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct GuideProgress {
+    pub guide_id: String,
+    pub current_step: i64,
+    pub completed: bool,
+    pub updated_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Guide {
+    pub id: String,
+    pub title: String,
+    pub topic: GuideTopic,
+    pub skill_level: SkillLevel,
+    pub time_minutes: i64,
+    pub steps: Vec<GuideStep>,
+    pub materials: Vec<String>,
+    pub illustrations: Vec<String>,
+    pub version: i64,
+    pub bookmarked: bool,
+    pub progress: Option<GuideProgress>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
+pub struct GuideFilters {
+    pub topic: Option<GuideTopic>,
+    pub skill_level: Option<SkillLevel>,
+    pub time_max_minutes: Option<i64>,
+}
+
+// ---------- Daily tips ----------
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct DailyTip {
+    pub id: String,
+    pub title: String,
+    pub body: String,
+    pub dismiss_until: Option<String>,
+    pub snoozed_until: Option<String>,
+}
+
+// ---------- Journal ----------
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum MeasurementKind {
+    Height,
+    Yield,
+    Flowers,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct JournalPhoto {
+    pub id: String,
+    pub entry_id: String,
+    pub path: String,
+    pub url: String,
+    pub created_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Measurement {
+    pub id: String,
+    pub plant_id: String,
+    pub plant_name: String,
+    pub kind: MeasurementKind,
+    pub value: f64,
+    pub unit: String,
+    pub recorded_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct JournalEntry {
+    pub id: String,
+    pub plant_id: Option<String>,
+    pub bed_id: Option<String>,
+    pub plant_name: Option<String>,
+    pub bed_name: Option<String>,
+    pub text: String,
+    pub tags: Vec<String>,
+    pub photos: Vec<JournalPhoto>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
+pub struct JournalFilters {
+    pub query: Option<String>,
+    pub plant_id: Option<String>,
+    pub tag: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct PlantTimeline {
+    pub plant_id: String,
+    pub plant_name: String,
+    pub measurements: Vec<Measurement>,
+    pub entries: Vec<JournalEntry>,
+}
