@@ -1,6 +1,7 @@
 pub mod catalog;
 pub mod gardens;
 pub mod migrations;
+pub mod planted;
 pub mod seed;
 pub mod settings;
 use std::path::Path;

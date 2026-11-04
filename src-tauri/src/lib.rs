@@ -31,7 +31,11 @@ pub fn run() {
             commands::gardens::delete_bed,
             commands::catalog::search_plants,
             commands::catalog::get_plant_detail,
-            commands::catalog::list_categories
+            commands::catalog::list_categories,
+            commands::planted::add_planting,
+            commands::planted::list_plantings,
+            commands::planted::update_planting_status,
+            commands::planted::remove_planting
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
