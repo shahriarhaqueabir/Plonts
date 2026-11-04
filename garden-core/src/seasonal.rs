@@ -44,6 +44,11 @@ pub fn season_name(s: Season) -> &'static str {
     }
 }
 
+/// Northern-hemisphere season for a 0-based month index (0 = January).
+pub fn season_for_month0(month0: i32) -> Season {
+    MONTHS_NORTH[month0.rem_euclid(12) as usize]
+}
+
 pub fn sowing_eligible(
     seasonality: Option<&Seasonality>,
     sowing_seasons: &[Season],
@@ -123,6 +128,15 @@ mod tests {
         assert!(month_in_window(10, MonthWindow { start_month: 10, end_month: 3 }));
         assert!(month_in_window(0, MonthWindow { start_month: 10, end_month: 3 }));
         assert!(!month_in_window(6, MonthWindow { start_month: 10, end_month: 3 }));
+    }
+
+    #[test]
+    fn season_for_month0_maps_calendar() {
+        assert_eq!(season_for_month0(0), Season::Winter);   // January
+        assert_eq!(season_for_month0(2), Season::Spring);   // March
+        assert_eq!(season_for_month0(5), Season::Summer);   // June
+        assert_eq!(season_for_month0(8), Season::Autumn);   // September
+        assert_eq!(season_for_month0(11), Season::Winter);  // December
     }
 
     #[test]
