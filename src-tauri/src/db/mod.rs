@@ -1,6 +1,7 @@
 pub mod calendar;
 pub mod catalog;
 pub mod gardens;
+pub mod guides;
 pub mod migrations;
 pub mod planted;
 pub mod seed;
