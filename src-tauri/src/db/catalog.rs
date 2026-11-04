@@ -1,12 +1,14 @@
 use rusqlite::{params, Connection};
 
-use crate::db;
 use crate::error::{AppError, AppResult};
 use garden_core::models::{
     PlantDetail, PlantStage, PlantSummary, Relation, RelationType, SearchFilters, SearchResult,
     Seasonality, SourceCard,
 };
 use garden_core::fts::build_query;
+
+#[cfg(test)]
+use crate::db;
 
 #[cfg(test)]
 fn seeded() -> Connection {

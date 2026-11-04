@@ -1,8 +1,10 @@
 use rusqlite::{params, Connection};
 
-use crate::db;
 use crate::error::{AppError, AppResult};
 use garden_core::models::{Bed, Garden};
+
+#[cfg(test)]
+use crate::db;
 
 #[cfg(test)]
 fn in_memory() -> Connection {

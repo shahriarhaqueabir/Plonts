@@ -1,10 +1,12 @@
 use rusqlite::Connection;
 
+#[cfg(test)]
 use crate::db;
 use crate::error::AppResult;
 use garden_core::models::{CalendarEntry, Hemisphere, PlantSummary, Season, Seasonality};
 use garden_core::seasonal::sowing_eligible;
 
+#[cfg(test)]
 fn seeded() -> Connection {
     let mut conn = Connection::open_in_memory().unwrap();
     db::migrate(&mut conn).unwrap();

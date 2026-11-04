@@ -1,9 +1,11 @@
 use rusqlite::{params, Connection};
 
+#[cfg(test)]
 use crate::db;
 use crate::error::{AppError, AppResult};
 use garden_core::models::Planting;
 
+#[cfg(test)]
 fn seeded() -> Connection {
     let mut conn = Connection::open_in_memory().unwrap();
     conn.pragma_update(None, "foreign_keys", "ON").unwrap();

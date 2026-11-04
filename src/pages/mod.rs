@@ -6,7 +6,6 @@ pub mod sowing_calendar;
 pub mod virtual_garden;
 
 pub use onboarding::Onboarding;
-pub use plant_detail::PlantDetailView;
 pub use plant_kb::PlantKbPage;
 pub use settings::SettingsPage;
 pub use sowing_calendar::SowingCalendarPage;

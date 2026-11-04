@@ -36,10 +36,6 @@ struct AddPlantingArgs {
 
 #[derive(serde::Serialize)]
 #[serde(rename_all = "camelCase")]
-struct UpdateStatusArgs { id: String, status: String, removal_reason: Option<String> }
-
-#[derive(serde::Serialize)]
-#[serde(rename_all = "camelCase")]
 struct SearchArgs { query: String, filters: Option<garden_core::models::SearchFilters>, limit: Option<usize> }
 
 #[component]
