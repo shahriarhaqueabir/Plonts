@@ -1,3 +1,4 @@
+pub mod calendar;
 pub mod catalog;
 pub mod gardens;
 pub mod migrations;

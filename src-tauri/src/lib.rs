@@ -35,7 +35,8 @@ pub fn run() {
             commands::planted::add_planting,
             commands::planted::list_plantings,
             commands::planted::update_planting_status,
-            commands::planted::remove_planting
+            commands::planted::remove_planting,
+            commands::calendar::get_calendar
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -50,8 +50,16 @@ pub fn sowing_eligible(
     hemisphere: Hemisphere,
     month0: i32,
 ) -> (bool, String) {
+    // Hemisphere-aware month: southern-hemisphere calendars are shifted by 6 months
+    // relative to the (northern-oriented) stored windows and season table.
+    let adjusted = if hemisphere == Hemisphere::South {
+        (month0 + 6) % 12
+    } else {
+        month0
+    };
+
     if let Some(seas) = seasonality {
-        if let Some(w) = seas.sowing.iter().find(|w| month_in_window(month0, **w)) {
+        if let Some(w) = seas.sowing.iter().find(|w| month_in_window(adjusted, **w)) {
             return (
                 true,
                 format!("Within the specific sowing window ({} to {}).", w.start_month, w.end_month),
@@ -59,11 +67,6 @@ pub fn sowing_eligible(
         }
     }
 
-    let adjusted = if hemisphere == Hemisphere::South {
-        (month0 + 6) % 12
-    } else {
-        month0
-    };
     let season = MONTHS_NORTH[adjusted as usize];
     if sowing_seasons.contains(&season) {
         return (true, format!("Currently in the {} sowing window.", season_name(season)));
