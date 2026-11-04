@@ -1,3 +1,4 @@
+pub mod catalog;
 pub mod gardens;
 pub mod migrations;
 pub mod seed;
