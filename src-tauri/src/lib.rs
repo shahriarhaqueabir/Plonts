@@ -14,6 +14,7 @@ pub fn run() {
             std::fs::create_dir_all(&dir)?;
             let mut conn = db::open(&dir.join("lovelygarden.db"))?;
             db::migrate(&mut conn)?;
+            db::seed::ensure_seeded(&mut conn)?;
             app.manage(AppState {
                 db: std::sync::Mutex::new(conn),
             });
