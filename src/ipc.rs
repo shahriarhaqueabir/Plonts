@@ -28,3 +28,47 @@ pub async fn call0<T: DeserializeOwned>(cmd: &str) -> Result<T, String> {
         .map_err(|e| e.as_string().unwrap_or_else(|| "invoke failed".to_string()))?;
     serde_wasm_bindgen::from_value(js).map_err(|e| e.to_string())
 }
+
+#[derive(serde::Serialize)]
+struct DialogFilter {
+    name: String,
+    extensions: Vec<String>,
+}
+
+#[derive(serde::Serialize)]
+struct OpenDialogArgs {
+    multiple: bool,
+    directory: bool,
+    filters: Vec<DialogFilter>,
+}
+
+#[derive(serde::Serialize)]
+struct SaveDialogArgs {
+    filters: Vec<DialogFilter>,
+}
+
+fn image_filters() -> Vec<DialogFilter> {
+    vec![DialogFilter {
+        name: "Images".to_string(),
+        extensions: vec!["png", "jpg", "jpeg", "webp", "gif"]
+            .into_iter()
+            .map(String::from)
+            .collect(),
+    }]
+}
+
+/// Open a native file picker via tauri-plugin-dialog; returns the selected path, or None.
+pub async fn pick_file() -> Result<Option<String>, String> {
+    let args = OpenDialogArgs {
+        multiple: false,
+        directory: false,
+        filters: image_filters(),
+    };
+    call::<Option<String>, _>("plugin:dialog|open", &args).await
+}
+
+/// Open a native save dialog via tauri-plugin-dialog; returns the chosen path, or None.
+pub async fn pick_save_path() -> Result<Option<String>, String> {
+    let args = SaveDialogArgs { filters: image_filters() };
+    call::<Option<String>, _>("plugin:dialog|save", &args).await
+}
