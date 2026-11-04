@@ -16,6 +16,7 @@ enum Tab {
     Guides,
     Journal,
     Problems,
+    SeedsHarvest,
     Settings,
 }
 
@@ -59,6 +60,7 @@ fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
         (Tab::Guides, "Guides"),
         (Tab::Journal, "Journal"),
         (Tab::Problems, "Problems"),
+        (Tab::SeedsHarvest, "Seeds & Harvest"),
         (Tab::Settings, "Settings"),
     ];
 
@@ -97,6 +99,7 @@ fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
                     Tab::Guides => view! { <pages::GuidesPage /> }.into_any(),
                     Tab::Journal => view! { <pages::JournalPage /> }.into_any(),
                     Tab::Problems => view! { <pages::ProblemsPage /> }.into_any(),
+                    Tab::SeedsHarvest => view! { <pages::SeedsHarvestPage /> }.into_any(),
                     Tab::Settings => view! { <pages::SettingsPage /> }.into_any(),
                 } }
             </section>
