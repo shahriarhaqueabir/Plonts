@@ -20,6 +20,7 @@ pub fn PlantKbPage() -> impl IntoView {
     let results = RwSignal::new(Vec::<SearchResult>::new());
     let categories = RwSignal::new(Vec::<String>::new());
     let selected = RwSignal::new(None::<String>);
+    let detail_id = Signal::derive(move || selected.get().clone().unwrap_or_default());
 
     let run = move || {
         let q = query.get();
@@ -58,9 +59,9 @@ pub fn PlantKbPage() -> impl IntoView {
     view! {
         <div class="flex h-full flex-col p-6">
             { move || match selected.get() {
-                Some(id) => view! {
+                Some(_) => view! {
                     <PlantDetailView
-                        plant_id=id.clone()
+                        plant_id=detail_id
                         on_back=Callback::new(move |_| selected.set(None))
                     />
                 }.into_any(),
