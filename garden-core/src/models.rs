@@ -360,3 +360,108 @@ pub struct PlantTimeline {
     pub measurements: Vec<Measurement>,
     pub entries: Vec<JournalEntry>,
 }
+
+// ---------- Problems ----------
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum Symptom {
+    YellowLeaves,
+    Spots,
+    Holes,
+    Wilting,
+    WhitePowder,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ProblemCause {
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub treatment: String,
+    pub prevention: String,
+    pub organic: bool,
+    pub image_asset_id: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Problem {
+    pub id: String,
+    pub planting_id: Option<String>,
+    pub planting_name: Option<String>,
+    pub symptom: Symptom,
+    pub affected_part: Option<String>,
+    pub spread: Option<String>,
+    pub cause: String,
+    pub treatment: String,
+    pub prevention: String,
+    pub follow_up_at: Option<String>,
+    pub resolved: bool,
+    pub resolution_note: Option<String>,
+    pub created_at: String,
+    pub resolved_at: Option<String>,
+}
+
+// ---------- Seeds, harvest, supplies ----------
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum Viability {
+    Fresh,
+    Aging,
+    Expired,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Seed {
+    pub id: String,
+    pub catalog_id: Option<String>,
+    pub plant_name: Option<String>,
+    pub variety: String,
+    pub source: String,
+    pub year: i64,
+    pub quantity: i64,
+    pub germination_notes: Option<String>,
+    pub viability_warned: bool,
+    pub viability: Viability,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Harvest {
+    pub id: String,
+    pub planting_id: Option<String>,
+    pub catalog_id: Option<String>,
+    pub plant_name: Option<String>,
+    pub date: String,
+    pub weight_g: Option<f64>,
+    pub count: Option<i64>,
+    pub notes: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct YieldRow {
+    pub key: String,
+    pub label: String,
+    pub total_weight_g: Option<f64>,
+    pub total_count: Option<i64>,
+    pub harvest_count: i64,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ShoppingItem {
+    pub id: String,
+    pub name: String,
+    pub category: String,
+    pub quantity: Option<String>,
+    pub checked: bool,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Tool {
+    pub id: String,
+    pub name: String,
+    pub last_maintained: Option<String>,
+    pub next_maintenance: Option<String>,
+    pub notes: Option<String>,
+    pub maintenance_due: bool,
+}
