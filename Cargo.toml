@@ -4,9 +4,6 @@ version = "0.1.0"
 edition = "2021"
 description = "LovelyGarden frontend (Leptos CSR, compiled to WASM by Trunk)"
 
-[lib]
-crate-type = ["cdylib", "rlib"]
-
 [workspace]
 members = ["garden-core", "src-tauri"]
 resolver = "2"
