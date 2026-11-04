@@ -1,0 +1,3366 @@
+[
+  {
+    "id": "plant_apricot",
+    "name": "Apricot",
+    "scientific_name": "Prunus armeniaca",
+    "family": "Rosaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Early bloomer. Requires winter chill hours (300-900) for fruit set. Avoid waterlogging; requires well-draining soil.",
+    "companions": [
+      "plant_basil",
+      "plant_garlic",
+      "plant_chive",
+      "plant_lavender",
+      "plant_rosemary",
+      "plant_nasturtium"
+    ],
+    "antagonists": [
+      "plant_tomato",
+      "plant_pepper",
+      "plant_potato",
+      "plant_eggplant"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 8
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_apricot",
+      "sunlight": "full_sun",
+      "water_requirements": "variable_high_during_fruiting",
+      "soil_ph": "6.0-7.8",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_arugula",
+    "name": "Arugula",
+    "scientific_name": "Eruca vesicaria",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Fast-growing cool-season crop. Bolts in heat; providing shade prolongs the harvest and reduces bitterness.",
+    "companions": [
+      "plant_carrot",
+      "plant_beet",
+      "plant_onion",
+      "plant_celery",
+      "plant_dill"
+    ],
+    "antagonists": [
+      "plant_tomato",
+      "plant_pepper",
+      "plant_strawberry",
+      "plant_bean_pole"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 9
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 4,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_arugula",
+      "sunlight": "partial_shade_to_full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_rich"
+    }
+  },
+  {
+    "id": "plant_asparagus",
+    "name": "Asparagus",
+    "scientific_name": "Asparagus officinalis",
+    "family": "Asparagaceae",
+    "plant_type": "vegetable",
+    "notes": "Long-lived perennial (15-20 years). Requires 2-3 years to establish; do not harvest in the first year to build crown strength.",
+    "companions": [
+      "plant_parsley",
+      "plant_tomato",
+      "plant_basil",
+      "plant_strawberry",
+      "plant_spinach",
+      "plant_eggplant"
+    ],
+    "antagonists": [
+      "plant_onion",
+      "plant_garlic",
+      "plant_leek",
+      "plant_carrot"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_asparagus",
+      "sunlight": "full_sun_tolerates_partial",
+      "water_requirements": "high_first_year_moderate_after",
+      "soil_ph": "6.5-7.5",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_banana",
+    "name": "Banana",
+    "scientific_name": "Musa acuminata",
+    "family": "Musaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Fast-growing herbaceous perennial. Heavy feeder; requires high potassium and consistent moisture. Sensitive to frost (stops growth below 10°C).",
+    "companions": [
+      "plant_papaya",
+      "plant_sweet_potato",
+      "plant_cacao",
+      "plant_ginger",
+      "plant_turmeric",
+      "plant_lemongrass"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_banana",
+      "sunlight": "full_sun_8to10_hours",
+      "water_requirements": "very_high_consistent",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "rich_loamy_organic"
+    }
+  },
+  {
+    "id": "plant_basil",
+    "name": "Basil",
+    "scientific_name": "Ocimum basilicum",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Fragrant annual herb. Improves tomato flavor when grown together. Pinch off flower buds to maintain leaf flavor and prolong harvest. Avoid cold drafts and frost.",
+    "companions": [
+      "plant_tomato",
+      "plant_pepper",
+      "plant_asparagus",
+      "plant_marigold",
+      "plant_borage",
+      "plant_garlic",
+      "plant_onion"
+    ],
+    "antagonists": [
+      "plant_rue",
+      "plant_fennel",
+      "plant_rosemary",
+      "plant_cucumber"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_basil",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_beet",
+    "name": "Beet",
+    "scientific_name": "Beta vulgaris",
+    "family": "Amaranthaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Soaking seeds for 24 hours improves germination. Harvest young (golf ball size) for best flavor and texture.",
+    "companions": [
+      "plant_lettuce",
+      "plant_onion",
+      "plant_garlic",
+      "plant_broccoli",
+      "plant_kale",
+      "plant_mint"
+    ],
+    "antagonists": ["plant_bean_pole", "plant_mustard_field", "plant_tomato"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_beet",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_alkaline_well_drained"
+    }
+  },
+  {
+    "id": "plant_bell_pepper",
+    "name": "Bell Pepper",
+    "scientific_name": "Capsicum annuum",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Heat-loving crop. Requires consistently warm soil (above 15°C) and staking for heavy fruit. Avoid high-nitrogen fertilizer once flowers appear.",
+    "companions": [
+      "plant_basil",
+      "plant_onion",
+      "plant_tomato",
+      "plant_carrot",
+      "plant_marigold",
+      "plant_oregano",
+      "plant_parsley"
+    ],
+    "antagonists": [
+      "plant_cabbage",
+      "plant_fennel",
+      "plant_kohlrabi",
+      "plant_broccoli",
+      "plant_cauliflower"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_bell_pepper",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "rich_loamy_sandy"
+    }
+  },
+  {
+    "id": "plant_birds_eye_chilli",
+    "name": "Birds Eye Chilli",
+    "scientific_name": "Capsicum annuum",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Small, extremely hot chilli. Tender perennial in tropics. Requires high heat and humidity; protect from frost and temperatures below 12°C. Pinch tips for bushier growth.",
+    "companions": [
+      "plant_basil",
+      "plant_onion",
+      "plant_garlic",
+      "plant_tomato",
+      "plant_carrot",
+      "plant_nasturtium",
+      "plant_oregano"
+    ],
+    "antagonists": [
+      "plant_bean",
+      "plant_fennel",
+      "plant_cabbage",
+      "plant_potato",
+      "plant_beet",
+      "plant_pea"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_birds_eye_chilli",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "rich_sandy_loam"
+    }
+  },
+  {
+    "id": "plant_bitter_gourd",
+    "name": "Bitter Gourd (Karela)",
+    "scientific_name": "Momordica charantia",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Vining plant; requires strong trellis support; very high medicinal value.",
+    "companions": ["plant_corn"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_bitter_gourd",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_sandy_well_drained"
+    }
+  },
+  {
+    "id": "plant_blueberry",
+    "name": "Blueberry",
+    "scientific_name": "Vaccinium corymbosum",
+    "family": "Ericaceae",
+    "plant_type": "fruit",
+    "notes": "Requires highly acidic soil (pH 4.5-5.5). Shallow-rooted; keep consistently moist. Cross-pollinating multiple varieties improves yield and fruit size. Benefits from pine needle mulch.",
+    "companions": [
+      "plant_rhododendron",
+      "plant_cranberry",
+      "plant_azalea",
+      "plant_pine",
+      "plant_dill",
+      "plant_borage",
+      "plant_thyme",
+      "plant_strawberry"
+    ],
+    "antagonists": [
+      "plant_walnut_black",
+      "plant_cabbage",
+      "plant_broccoli",
+      "plant_cauliflower",
+      "plant_potato",
+      "plant_tomato"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 8
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_blueberry",
+      "sunlight": "full_sun",
+      "water_requirements": "high_consistent",
+      "soil_ph": "4.5-5.5",
+      "soil_type": "peaty_acidic_sandy_loam"
+    }
+  },
+  {
+    "id": "plant_borage",
+    "name": "Borage",
+    "scientific_name": "Borago officinalis",
+    "family": "Boraginaceae",
+    "plant_type": "herb",
+    "notes": "Excellent companion for many vegetables. Star-shaped blue flowers are edible and attract bees. Readily self-seeds; has a deep taproot and dislikes transplanting.",
+    "companions": [
+      "plant_tomato",
+      "plant_squash",
+      "plant_strawberry",
+      "plant_cabbage",
+      "plant_broccoli"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_borage",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "low_to_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "fertile_well_drained"
+    }
+  },
+  {
+    "id": "plant_bottle_gourd",
+    "name": "Bottle Gourd",
+    "scientific_name": "Lagenaria siceraria",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Night flowering.",
+    "companions": ["plant_corn"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 6
+        },
+        {
+          "start_month": 3,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 11
+        },
+        {
+          "start_month": 7,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_bottle_gourd",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_rich_well_drained"
+    }
+  },
+  {
+    "id": "plant_broccoli",
+    "name": "Broccoli",
+    "scientific_name": "Brassica oleracea var. italica",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Requires consistent moisture for head development. Harvest main head first to encourage side shoot growth. Rotate crops to avoid clubroot.",
+    "companions": [
+      "plant_onion",
+      "plant_celery",
+      "plant_basil",
+      "plant_dill",
+      "plant_mint",
+      "plant_rosemary",
+      "plant_sage",
+      "plant_thyme",
+      "plant_lettuce",
+      "plant_spinach",
+      "plant_beet",
+      "plant_radish",
+      "plant_garlic",
+      "plant_nasturtium"
+    ],
+    "antagonists": ["plant_tomato", "plant_pepper", "plant_cauliflower"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_broccoli",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate_to_high",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "rich_loamy_moist"
+    }
+  },
+  {
+    "id": "plant_brussels_sprout",
+    "name": "Brussels Sprout",
+    "scientific_name": "Brassica oleracea var. gemmifera",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop with a long growing season. Frost improves flavor. Remove lower leaves as sprouts develop. May require staking to support tall stalks.",
+    "companions": [
+      "plant_celery",
+      "plant_onion",
+      "plant_garlic",
+      "plant_sage",
+      "plant_thyme",
+      "plant_dill",
+      "plant_rosemary",
+      "plant_marigold",
+      "plant_nasturtium",
+      "plant_chamomile",
+      "plant_beet",
+      "plant_spinach",
+      "plant_potato"
+    ],
+    "antagonists": [
+      "plant_strawberry",
+      "plant_broccoli",
+      "plant_cabbage",
+      "plant_kale",
+      "plant_cauliflower"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 9,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_brussels_sprout",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_high",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "rich_loamy_moist_heavy"
+    }
+  },
+  {
+    "id": "plant_squash_butternut",
+    "name": "Butternut Squash",
+    "scientific_name": "Cucurbita moschata",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Long growing season.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 9,
+          "end_month": 11
+        },
+        {
+          "start_month": 9,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_squash_butternut",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_cacao",
+    "name": "Cacao",
+    "scientific_name": "Theobroma cacao",
+    "family": "Malvaceae",
+    "plant_type": "tree",
+    "notes": "Shade tree required.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 10,
+          "end_month": 3
+        },
+        {
+          "start_month": 10,
+          "end_month": 3
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cacao",
+      "sunlight": "partial_shade",
+      "water_requirements": "high",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "deep_loamy_rich_organic"
+    }
+  },
+  {
+    "id": "plant_cantaloupe",
+    "name": "Cantaloupe",
+    "scientific_name": "Cucumis melo",
+    "family": "Cucurbitaceae",
+    "plant_type": "fruit",
+    "notes": "Heat-loving vine. Requires pollinators for fruit set. Indicators of ripeness include musky aroma and 'full slip' (stem detaches easily). Avoid overhead watering.",
+    "companions": [
+      "plant_corn",
+      "plant_squash",
+      "plant_pumpkin",
+      "plant_bean",
+      "plant_carrot",
+      "plant_garlic",
+      "plant_onion",
+      "plant_chive",
+      "plant_lettuce",
+      "plant_radish",
+      "plant_spinach",
+      "plant_basil",
+      "plant_dill",
+      "plant_marigold",
+      "plant_nasturtium",
+      "plant_sunflower"
+    ],
+    "antagonists": ["plant_potato", "plant_cucumber"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cantaloupe",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_high_frequent",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "rich_sandy_loam"
+    }
+  },
+  {
+    "id": "plant_carrot",
+    "name": "Carrot",
+    "scientific_name": "Daucus carota",
+    "family": "Apiaceae",
+    "plant_type": "vegetable",
+    "notes": "Soil must be stone-free for straight roots.",
+    "companions": [
+      "plant_onion",
+      "plant_parsley",
+      "plant_sage",
+      "plant_chive",
+      "plant_tomato",
+      "plant_leek",
+      "plant_lettuce",
+      "plant_rosemary",
+      "plant_pea"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        },
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 11
+        },
+        {
+          "start_month": 6,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_carrot",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loose_sandy_loam_stone_free"
+    }
+  },
+  {
+    "id": "plant_cauliflower",
+    "name": "Cauliflower",
+    "scientific_name": "Brassica oleracea var. botrytis",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Sensitive to temperature fluctuations. May require 'blanching' (tying leaves over curd) to protect from sun and maintain white color. Heavy feeder.",
+    "companions": [
+      "plant_onion",
+      "plant_beet",
+      "plant_celery",
+      "plant_bean",
+      "plant_garlic",
+      "plant_carrot",
+      "plant_dill",
+      "plant_sage",
+      "plant_thyme",
+      "plant_mint",
+      "plant_spinach",
+      "plant_nasturtium",
+      "plant_marigold"
+    ],
+    "antagonists": ["plant_strawberry", "plant_tomato"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 5
+        },
+        {
+          "start_month": 7,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cauliflower",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate_to_high",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "rich_loamy_moist"
+    }
+  },
+  {
+    "id": "plant_cabbage",
+    "name": "Cabbage",
+    "scientific_name": "Brassica oleracea var. capitata",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Surface feeders; avoid deep cultivation. Consistent moisture prevents head splitting. Harvest when heads are firm.",
+    "companions": [
+      "plant_onion",
+      "plant_beet",
+      "plant_celery",
+      "plant_garlic",
+      "plant_dill",
+      "plant_chamomile",
+      "plant_sage",
+      "plant_mint",
+      "plant_thyme",
+      "plant_rosemary",
+      "plant_borage",
+      "plant_nasturtium",
+      "plant_bean",
+      "plant_pea",
+      "plant_marigold"
+    ],
+    "antagonists": ["plant_strawberry", "plant_tomato", "plant_pole_bean"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 4
+        },
+        {
+          "start_month": 7,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cabbage",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate_to_high",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_celery",
+    "name": "Celery",
+    "scientific_name": "Apium graveolens",
+    "family": "Apiaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Extremely high water and nutrient needs. Use mulch to keep roots cool and moist. Stalks from trench varieties may need 'blanching' for a milder flavor.",
+    "companions": [
+      "plant_cabbage",
+      "plant_tomato",
+      "plant_onion",
+      "plant_mint",
+      "plant_sage",
+      "plant_dill",
+      "plant_oregano",
+      "plant_rosemary",
+      "plant_garlic",
+      "plant_leek",
+      "plant_cauliflower",
+      "plant_broccoli",
+      "plant_radish",
+      "plant_bean_bush",
+      "plant_cucumber",
+      "plant_nasturtium",
+      "plant_chive"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 8,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_celery",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_very_high",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "rich_loamy_moist_organic"
+    }
+  },
+  {
+    "id": "plant_bok_choy",
+    "name": "Bok Choy",
+    "scientific_name": "Brassica rapa subsp. chinensis",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop. Fast-growing; harvest in as little as 30 days for baby leaves. Sensitive to heat; bolts quickly above 25°C. Prefers consistently moist soil.",
+    "companions": [
+      "plant_celery",
+      "plant_onion",
+      "plant_beet",
+      "plant_garlic",
+      "plant_rosemary",
+      "plant_sage",
+      "plant_thyme",
+      "plant_pea",
+      "plant_bean"
+    ],
+    "antagonists": ["plant_cabbage", "plant_kohlrabi", "plant_radish"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 8,
+          "end_month": 9
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 9,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_bok_choy",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_cherimoya",
+    "name": "Cherimoya",
+    "scientific_name": "Annona cherimola",
+    "family": "Annonaceae",
+    "plant_type": "fruit",
+    "notes": "Subtropical fruit tree. Extremely sensitive to frost and dry heat. Requires hand pollination for reliable yield. Brittle branches; protect from strong winds.",
+    "companions": [
+      "plant_lavender",
+      "plant_rosemary",
+      "plant_thyme",
+      "plant_marigold",
+      "plant_bean"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 10,
+          "end_month": 5
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cherimoya",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_moderate_to_high",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "medium_loamy_rich"
+    }
+  },
+  {
+    "id": "plant_chilli",
+    "name": "Chilli Pepper",
+    "scientific_name": "Capsicum frutescens",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Tropical subshrub producing small, intense chillies. Perennial in warm climates. Requires consistently warm soil and full sun. High capsaicin content; handle with care.",
+    "companions": [
+      "plant_basil",
+      "plant_onion",
+      "plant_garlic",
+      "plant_tomato",
+      "plant_carrot",
+      "plant_nasturtium",
+      "plant_oregano",
+      "plant_marigold",
+      "plant_lettuce",
+      "plant_thyme"
+    ],
+    "antagonists": [
+      "plant_bean",
+      "plant_fennel",
+      "plant_cabbage",
+      "plant_potato",
+      "plant_beet",
+      "plant_pea"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_chilli",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.5-7.0",
+      "soil_type": "loamy_rich_organic"
+    }
+  },
+  {
+    "id": "plant_chive",
+    "name": "Chive",
+    "scientific_name": "Allium schoenoprasum",
+    "family": "Amaryllidaceae",
+    "plant_type": "herb",
+    "notes": "Hardy perennial. Edible flowers attract pollinators. Masking scent deters pests. Divide clumps every 2-4 years to maintain vigor.",
+    "companions": [
+      "plant_tomato",
+      "plant_carrot",
+      "plant_pea",
+      "plant_apple",
+      "plant_strawberry",
+      "plant_broccoli",
+      "plant_cabbage",
+      "plant_celery",
+      "plant_lettuce",
+      "plant_parsnip",
+      "plant_kohlrabi",
+      "plant_spinach",
+      "plant_basil",
+      "plant_parsley",
+      "plant_dill",
+      "plant_oregano",
+      "plant_thyme",
+      "plant_rosemary",
+      "plant_marigold",
+      "plant_nasturtium",
+      "plant_lavender"
+    ],
+    "antagonists": ["plant_asparagus", "plant_bean"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_chive",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_collard_greens",
+    "name": "Collard Greens",
+    "scientific_name": "Brassica oleracea var. viridis",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Cold hardy.",
+    "companions": ["plant_onion"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        },
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 12
+        },
+        {
+          "start_month": 6,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_collard_greens",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.5-7.5",
+      "soil_type": "fertile_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_coriander",
+    "name": "Coriander / Cilantro",
+    "scientific_name": "Coriandrum sativum",
+    "family": "Apiaceae",
+    "plant_type": "herb",
+    "notes": "Fast-growing annual herb. Leaves (cilantro) and seeds (coriander) are both edible. Prone to bolting (flowering prematurely) in hot weather. Succession planting every 2-3 weeks recommended for a steady supply of leaves.",
+    "companions": [
+      "plant_tomato",
+      "plant_pepper",
+      "plant_spinach",
+      "plant_lettuce",
+      "plant_kale",
+      "plant_cabbage",
+      "plant_potato",
+      "plant_dill",
+      "plant_bean"
+    ],
+    "antagonists": ["plant_fennel", "plant_rosemary", "plant_lavender"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 9
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_coriander",
+      "sunlight": "full_sun_to_partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.3-8.0",
+      "soil_type": "loamy_sandy_rich"
+    }
+  },
+  {
+    "id": "plant_cosmos",
+    "name": "Cosmos",
+    "scientific_name": "Cosmos bipinnatus",
+    "family": "Asteraceae",
+    "plant_type": "flower",
+    "notes": "Hardy, easy-to-grow annual. Lacy foliage and daisy-like blooms from summer to first frost. Highly attractive to pollinators and beneficial insects like lacewings and hoverflies. Drought tolerant; performs better in less fertile soil.",
+    "companions": [
+      "plant_zinnia",
+      "plant_marigold",
+      "plant_dahlia",
+      "plant_sunflower",
+      "plant_nasturtium",
+      "plant_tomato",
+      "plant_cucumber",
+      "plant_beet",
+      "plant_basil",
+      "plant_dill"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cosmos",
+      "sunlight": "full_sun",
+      "water_requirements": "low_to_moderate",
+      "soil_ph": "7.0-7.5",
+      "soil_type": "medium_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_cucumber",
+    "name": "Cucumber",
+    "scientific_name": "Cucumis sativus",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Heat-loving, vining plant. Benefits significantly from trellising to improve air circulation and keep fruit clean. Sensitive to frost. Consistent, deep watering is crucial to prevent bitter-tasting fruits.",
+    "companions": [
+      "plant_dill",
+      "plant_borage",
+      "plant_chive",
+      "plant_oregano",
+      "plant_basil",
+      "plant_parsley",
+      "plant_corn",
+      "plant_sunflower",
+      "plant_bean",
+      "plant_pea",
+      "plant_beet",
+      "plant_carrot",
+      "plant_radish",
+      "plant_nasturtium",
+      "plant_marigold"
+    ],
+    "antagonists": [
+      "plant_potato",
+      "plant_pumpkin",
+      "plant_squash",
+      "plant_melon",
+      "plant_sage"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_cucumber",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_high",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "light_textured_rich_organic"
+    }
+  },
+  {
+    "id": "plant_curry_leaf",
+    "name": "Curry Leaf",
+    "scientific_name": "Murraya koenigii",
+    "family": "Rutaceae",
+    "plant_type": "herb",
+    "notes": "Tropical to subtropical evergreen aromatic tree. Extremely sensitive to frost. Benefits from regular pruning to maintain a bushy shape and prevent it from becoming leggy. Requires warm soil and high humidity.",
+    "companions": [
+      "plant_basil",
+      "plant_marigold",
+      "plant_tomato",
+      "plant_chilli",
+      "plant_borage",
+      "plant_chive",
+      "plant_rosemary"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_curry_leaf",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "fertile_well_drained_slightly_acidic"
+    }
+  },
+  {
+    "id": "plant_dill",
+    "name": "Dill",
+    "scientific_name": "Anethum graveolens",
+    "family": "Apiaceae",
+    "plant_type": "herb",
+    "notes": "Fast-growing annual herb with feathery foliage and umbrella-shaped yellow flowers. Highly beneficial in the garden for attracting predatory insects like hoverflies and ladybugs. Prone to bolting (going to seed) in high heat; succession plant every few weeks for a continuous supply of leaves.",
+    "companions": [
+      "plant_broccoli",
+      "plant_cabbage",
+      "plant_cauliflower",
+      "plant_kale",
+      "plant_cucumber",
+      "plant_lettuce",
+      "plant_asparagus",
+      "plant_corn",
+      "plant_tomato",
+      "plant_pepper",
+      "plant_onion",
+      "plant_basil"
+    ],
+    "antagonists": ["plant_carrot", "plant_fennel", "plant_coriander"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_dill",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "well_draining_fertile_organic"
+    }
+  },
+  {
+    "id": "plant_eggplant",
+    "name": "Eggplant",
+    "scientific_name": "Solanum melongena",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Warm-season vegetable requiring long growing season (80+ days). Sensitive to frost and cold temperatures. Heavy feeder requiring consistent moisture. Stake plants when they reach 30cm to support fruit-laden branches.",
+    "companions": [
+      "plant_bean",
+      "plant_pea",
+      "plant_onion",
+      "plant_garlic",
+      "plant_chive",
+      "plant_dill",
+      "plant_oregano",
+      "plant_marigold",
+      "plant_borage",
+      "plant_nasturtium",
+      "plant_spinach"
+    ],
+    "antagonists": ["plant_potato"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_eggplant",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_high",
+      "soil_ph": "5.5-7.3",
+      "soil_type": "sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_garlic",
+    "name": "Garlic",
+    "scientific_name": "Allium sativum",
+    "family": "Amaryllidaceae",
+    "plant_type": "vegetable",
+    "notes": "Biennial grown as annual. Requires vernalization (10 weeks below 8°C) for proper bulb formation. Plant cloves pointed-end up in fall, 1-2 weeks after first frost. Hardneck varieties produce edible scapes. Heavy feeder requiring nitrogen.",
+    "companions": [
+      "plant_tomato",
+      "plant_rose",
+      "plant_carrot",
+      "plant_cabbage",
+      "plant_broccoli",
+      "plant_beet",
+      "plant_strawberry",
+      "plant_pepper",
+      "plant_lettuce",
+      "plant_marigold",
+      "plant_nasturtium"
+    ],
+    "antagonists": ["plant_pea", "plant_bean"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 10,
+          "end_month": 11
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 8
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_garlic",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "well_drained_fertile_organic"
+    }
+  },
+  {
+    "id": "plant_geranium",
+    "name": "Geranium",
+    "scientific_name": "Pelargonium hortorum",
+    "family": "Geraniaceae",
+    "plant_type": "flower",
+    "notes": "Tender perennial.",
+    "companions": ["plant_rose", "plant_grape"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        },
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_geranium",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.8-6.5",
+      "soil_type": "loamy_well_drained_slightly_acidic"
+    }
+  },
+  {
+    "id": "plant_ginger",
+    "name": "Ginger",
+    "scientific_name": "Zingiber officinale",
+    "family": "Zingiberaceae",
+    "plant_type": "herb",
+    "notes": "Tropical herbaceous perennial grown for aromatic rhizomes. Requires 8-10 months to mature. Plant rhizome pieces with buds pointing up, 2-4 inches deep. Pre-sprout indoors in late winter. Sensitive to waterlogging and frost.",
+    "companions": [
+      "plant_turmeric",
+      "plant_bean",
+      "plant_pea",
+      "plant_coriander",
+      "plant_garlic",
+      "plant_onion",
+      "plant_chilli",
+      "plant_lemongrass",
+      "plant_nasturtium"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 10,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_ginger",
+      "sunlight": "partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.8-7.0",
+      "soil_type": "loose_loamy_rich_organic"
+    }
+  },
+  {
+    "id": "plant_bean",
+    "name": "Green Bean",
+    "scientific_name": "Phaseolus vulgaris",
+    "family": "Fabaceae",
+    "plant_type": "vegetable",
+    "notes": "Nitrogen-fixing legume.",
+    "companions": [
+      "plant_cucumber",
+      "plant_zucchini",
+      "plant_corn",
+      "plant_squash",
+      "plant_petunia",
+      "plant_cosmos",
+      "plant_eggplant",
+      "plant_swiss_chard",
+      "plant_collard_greens",
+      "plant_turnip",
+      "plant_squash_butternut",
+      "plant_pumpkin",
+      "plant_potato",
+      "plant_kale",
+      "plant_strawberry",
+      "plant_rosemary",
+      "plant_bitter_gourd",
+      "plant_moringa"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 7
+        },
+        {
+          "start_month": 4,
+          "end_month": 7
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 9
+        },
+        {
+          "start_month": 6,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_bean",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_habanero",
+    "name": "Habanero Pepper",
+    "scientific_name": "Capsicum chinense",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Extremely hot pepper requiring long growing season (90-120 days). Grows 4-7 feet tall; needs staking. Start seeds indoors 6-10 weeks before last frost. Optimal temps 22-30°C. Reduce watering once peppers form to increase heat. Handle with gloves.",
+    "companions": [
+      "plant_basil",
+      "plant_onion",
+      "plant_garlic",
+      "plant_chive",
+      "plant_carrot",
+      "plant_cilantro",
+      "plant_dill",
+      "plant_oregano",
+      "plant_marigold",
+      "plant_borage",
+      "plant_nasturtium",
+      "plant_spinach"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_habanero",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "well_draining_fertile_loamy"
+    }
+  },
+  {
+    "id": "plant_kale",
+    "name": "Kale",
+    "scientific_name": "Brassica oleracea var. sabellica",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Hardy biennial grown as annual. Cold-tolerant; flavor improves after frost. Heavy feeder requiring nitrogen-rich soil. Prone to bolting in heat. Practice 3-4 year crop rotation to prevent disease buildup.",
+    "companions": [
+      "plant_onion",
+      "plant_garlic",
+      "plant_chive",
+      "plant_dill",
+      "plant_rosemary",
+      "plant_mint",
+      "plant_thyme",
+      "plant_basil",
+      "plant_marigold",
+      "plant_nasturtium",
+      "plant_bean",
+      "plant_beet",
+      "plant_carrot"
+    ],
+    "antagonists": ["plant_strawberry", "plant_tomato"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_kale",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "fertile_well_drained_organic"
+    }
+  },
+  {
+    "id": "plant_lavender",
+    "name": "Lavender",
+    "scientific_name": "Lavandula",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Mediterranean perennial requiring excellent drainage. Drought-tolerant once established. Highly susceptible to root rot in waterlogged soil. Prune annually after flowering; avoid cutting into old wood. Reaches maturity in 3-5 years.",
+    "companions": [
+      "plant_rosemary",
+      "plant_sage",
+      "plant_thyme",
+      "plant_oregano",
+      "plant_basil",
+      "plant_marigold",
+      "plant_zinnia",
+      "plant_rose"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 8
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_lavender",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.5-7.5",
+      "soil_type": "sandy_gritty_well_drained"
+    }
+  },
+  {
+    "id": "plant_lemon",
+    "name": "Lemon",
+    "scientific_name": "Citrus limon",
+    "family": "Rutaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Sensitive to frost; heavy feeder.",
+    "companions": ["plant_rosemary", "plant_thyme"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_lemon",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-6.5",
+      "soil_type": "sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_lettuce",
+    "name": "Lettuce",
+    "scientific_name": "Lactuca sativa",
+    "family": "Asteraceae",
+    "plant_type": "vegetable",
+    "notes": "Cool-season crop with shallow roots. Succession plant every 2 weeks for continuous harvest. Bolts (flowers) in heat above 25°C, making leaves bitter. Benefits from partial shade in summer. Harvest in early morning for crispest leaves.",
+    "companions": [
+      "plant_onion",
+      "plant_garlic",
+      "plant_chive",
+      "plant_radish",
+      "plant_carrot",
+      "plant_beet",
+      "plant_bean",
+      "plant_pea",
+      "plant_basil",
+      "plant_mint",
+      "plant_dill",
+      "plant_nasturtium",
+      "plant_marigold",
+      "plant_corn"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_lettuce",
+      "sunlight": "partial_shade",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "loamy_moist_well_drained"
+    }
+  },
+  {
+    "id": "plant_mint",
+    "name": "Mint",
+    "scientific_name": "Mentha",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Invasive roots.",
+    "companions": ["plant_tomato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        },
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_mint",
+      "sunlight": "partial_shade",
+      "water_requirements": "high",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "rich_moist_well_drained"
+    }
+  },
+  {
+    "id": "plant_money_plant",
+    "name": "Money Plant",
+    "scientific_name": "Epipremnum aureum",
+    "family": "Araceae",
+    "plant_type": "ornamental",
+    "notes": "Hardy air purifier.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_money_plant",
+      "sunlight": "low_indirect_light",
+      "water_requirements": "low",
+      "soil_ph": "6.1-6.5",
+      "soil_type": "well_drained_organic"
+    }
+  },
+  {
+    "id": "plant_monstera",
+    "name": "Monstera",
+    "scientific_name": "Monstera deliciosa",
+    "family": "Araceae",
+    "plant_type": "ornamental",
+    "notes": "Toxic to pets.",
+    "companions": ["plant_pothos"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_monstera",
+      "sunlight": "bright_indirect_light",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "rich_well_drained_organic"
+    }
+  },
+  {
+    "id": "plant_moringa",
+    "name": "Moringa (Drumstick Tree)",
+    "scientific_name": "Moringa oleifera",
+    "family": "Moringaceae",
+    "plant_type": "tree",
+    "notes": "Fastest growing tree; every part of the plant is edible; extremely drought resistant.",
+    "companions": ["plant_sweet_potato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 9,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_moringa",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.3-7.0",
+      "soil_type": "sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_nasturtium",
+    "name": "Nasturtium",
+    "scientific_name": "Tropaeolum majus",
+    "family": "Tropaeolaceae",
+    "plant_type": "flower",
+    "notes": "Trap crop for aphids.",
+    "companions": [
+      "plant_zucchini",
+      "plant_radish",
+      "plant_squash",
+      "plant_watermelon"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        },
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_nasturtium",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "poor_to_average_well_drained"
+    }
+  },
+  {
+    "id": "plant_okra",
+    "name": "Okra (Bhindi)",
+    "scientific_name": "Abelmoschus esculentus",
+    "family": "Malvaceae",
+    "plant_type": "vegetable",
+    "notes": "Heat and drought tolerant; harvest pods when small and tender.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 7
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_okra",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_sandy_well_drained"
+    }
+  },
+  {
+    "id": "plant_onion",
+    "name": "Onion",
+    "scientific_name": "Allium cepa",
+    "family": "Amaryllidaceae",
+    "plant_type": "vegetable",
+    "notes": "Day-length sensitive.",
+    "companions": ["plant_swiss_chard", "plant_tomato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        },
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        },
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_onion",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_oregano",
+    "name": "Oregano",
+    "scientific_name": "Origanum vulgare",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Perennial herb.",
+    "companions": ["plant_squash", "plant_tomato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        },
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_oregano",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.0-8.0",
+      "soil_type": "sandy_well_drained_slightly_alkaline"
+    }
+  },
+  {
+    "id": "plant_papaya",
+    "name": "Papaya",
+    "scientific_name": "Carica papaya",
+    "family": "Caricaceae",
+    "plant_type": "fruit",
+    "notes": "Avoid waterlogging.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 6
+        },
+        {
+          "start_month": 3,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_papaya",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "6.0-6.5",
+      "soil_type": "sandy_loam_rich_well_drained"
+    }
+  },
+  {
+    "id": "plant_parsley",
+    "name": "Parsley",
+    "scientific_name": "Petroselinum crispum",
+    "family": "Apiaceae",
+    "plant_type": "herb",
+    "notes": "Slow germination.",
+    "companions": ["plant_tomato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        },
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        },
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_parsley",
+      "sunlight": "partial_shade",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_moist_well_drained"
+    }
+  },
+  {
+    "id": "plant_carrot",
+    "name": "Carrot",
+    "scientific_name": "Daucus carota subsp. sativus",
+    "family": "Apiaceae",
+    "plant_type": "vegetable",
+    "notes": "Direct sow only; dislikes transplanting. Requires stone-free, loose soil for straight roots. Consistent moisture is key for flavor. Thinnings are edible.",
+    "companions": [
+      "plant_tomato",
+      "plant_lettuce",
+      "plant_onion",
+      "plant_chive",
+      "plant_garlic",
+      "plant_leek",
+      "plant_rosemary",
+      "plant_sage",
+      "plant_marigold",
+      "plant_nasturtium",
+      "plant_bean",
+      "plant_pea",
+      "plant_radish",
+      "plant_spinach"
+    ],
+    "antagonists": [
+      "plant_dill",
+      "plant_fennel",
+      "plant_celery",
+      "plant_parsnip",
+      "plant_potato"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 7,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_carrot",
+      "sunlight": "full_sun",
+      "water_requirements": "consistent_moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loose_sandy_loam_stone_free"
+    }
+  },
+  {
+    "id": "plant_pea",
+    "name": "Pea",
+    "scientific_name": "Pisum sativum",
+    "family": "Fabaceae",
+    "plant_type": "vegetable",
+    "notes": "Nitrogen fixer; cool season crop.",
+    "companions": ["plant_turnip", "plant_spinach", "plant_radish"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 7
+        },
+        {
+          "start_month": 5,
+          "end_month": 7
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_pea",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_petunia",
+    "name": "Petunia",
+    "scientific_name": "Petunia hybrida",
+    "family": "Solanaceae",
+    "plant_type": "flower",
+    "notes": "Requires deadheading.",
+    "companions": ["plant_tomato"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        },
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_petunia",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_well_drained_slightly_acidic"
+    }
+  },
+  {
+    "id": "plant_plum",
+    "name": "Plum",
+    "scientific_name": "Prunus domestica",
+    "family": "Rosaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Needs cross pollination.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        },
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        },
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_plum",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-6.5",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_potato",
+    "name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Hill soil around stems to increase yield.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        },
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 8,
+          "end_month": 10
+        },
+        {
+          "start_month": 8,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_potato",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "4.8-6.0",
+      "soil_type": "loose_sandy_loam_acidic"
+    }
+  },
+  {
+    "id": "plant_pumpkin",
+    "name": "Pumpkin",
+    "scientific_name": "Cucurbita pepo",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Requires space.",
+    "companions": ["plant_sunflower"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 5,
+          "end_month": 6
+        },
+        {
+          "start_month": 5,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 9,
+          "end_month": 10
+        },
+        {
+          "start_month": 9,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_pumpkin",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_radish",
+    "name": "Radish",
+    "scientific_name": "Raphanus sativus",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Fastest growing crop.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 9
+        },
+        {
+          "start_month": 3,
+          "end_month": 9
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 4,
+          "end_month": 10
+        },
+        {
+          "start_month": 4,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_radish",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loose_sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_raspberry",
+    "name": "Raspberry",
+    "scientific_name": "Rubus idaeus",
+    "family": "Rosaceae",
+    "plant_type": "fruit",
+    "notes": "Prune second-year canes after harvest.",
+    "companions": ["plant_tansy"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        },
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        },
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_raspberry",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-6.5",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_blackberry",
+    "name": "Blackberry",
+    "scientific_name": "Rubus fruticosus",
+    "family": "Rosaceae",
+    "plant_type": "fruit",
+    "notes": "Vigorous biennial canes. Requires 2-3 years to establish. Prune second-year floricanes after harvest. Trellising recommended for better yield and air circulation.",
+    "companions": [
+      "plant_garlic",
+      "plant_chive",
+      "plant_borage",
+      "plant_yarrow",
+      "plant_lavender",
+      "plant_marigold",
+      "plant_tansy"
+    ],
+    "antagonists": [
+      "plant_raspberry",
+      "plant_potato",
+      "plant_tomato",
+      "plant_pepper",
+      "plant_eggplant"
+    ],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_blackberry",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate_to_high_during_fruiting",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "rich_loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_rosemary",
+    "name": "Rosemary",
+    "scientific_name": "Salvia rosmarinus",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Perennial; avoid overwatering.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        },
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_rosemary",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "sandy_well_drained_slightly_alkaline"
+    }
+  },
+  {
+    "id": "plant_sage",
+    "name": "Sage",
+    "scientific_name": "Salvia officinalis",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Woody perennial.",
+    "companions": ["plant_strawberry"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        },
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_sage",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "sandy_well_drained"
+    }
+  },
+  {
+    "id": "plant_spinach",
+    "name": "Spinach",
+    "scientific_name": "Spinacia oleracea",
+    "family": "Amaranthaceae",
+    "plant_type": "vegetable",
+    "notes": "Cool season crop; bolts in heat.",
+    "companions": ["plant_strawberry"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 7
+        },
+        {
+          "start_month": 5,
+          "end_month": 7
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_spinach",
+      "sunlight": "partial_shade",
+      "water_requirements": "moderate",
+      "soil_ph": "6.5-7.5",
+      "soil_type": "loamy_moist_nitrogen_rich"
+    }
+  },
+  {
+    "id": "plant_strawberry",
+    "name": "Strawberry",
+    "scientific_name": "Fragaria ananassa",
+    "family": "Rosaceae",
+    "plant_type": "fruit",
+    "notes": "Mulch with straw to keep fruit off ground.",
+    "companions": ["plant_thyme"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        },
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 8
+        },
+        {
+          "start_month": 6,
+          "end_month": 8
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_strawberry",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate_to_high",
+      "soil_ph": "5.5-6.5",
+      "soil_type": "sandy_loam_well_drained_slightly_acidic"
+    }
+  },
+  {
+    "id": "plant_sunflower",
+    "name": "Sunflower",
+    "scientific_name": "Helianthus annuus",
+    "family": "Asteraceae",
+    "plant_type": "flower",
+    "notes": "Allelopathic properties.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 8,
+          "end_month": 10
+        },
+        {
+          "start_month": 8,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_sunflower",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_corn",
+    "name": "Sweet Corn",
+    "scientific_name": "Zea mays",
+    "family": "Poaceae",
+    "plant_type": "vegetable",
+    "notes": "Wind pollinated; plant in blocks for better pollination.",
+    "companions": [
+      "plant_cucumber",
+      "plant_zucchini",
+      "plant_sunflower",
+      "plant_geranium",
+      "plant_squash_butternut",
+      "plant_pumpkin",
+      "plant_watermelon",
+      "plant_long_bean",
+      "plant_potato",
+      "plant_squash"
+    ],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 5,
+          "end_month": 6
+        },
+        {
+          "start_month": 5,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 8,
+          "end_month": 9
+        },
+        {
+          "start_month": 8,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_corn",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "5.8-7.0",
+      "soil_type": "loamy_fertile_well_drained"
+    }
+  },
+  {
+    "id": "plant_swiss_chard",
+    "name": "Swiss Chard",
+    "scientific_name": "Beta vulgaris subsp. vulgaris",
+    "family": "Amaranthaceae",
+    "plant_type": "vegetable",
+    "notes": "Tolerates light frost.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 7
+        },
+        {
+          "start_month": 3,
+          "end_month": 7
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        },
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_swiss_chard",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_rich_well_drained"
+    }
+  },
+  {
+    "id": "plant_thyme",
+    "name": "Thyme",
+    "scientific_name": "Thymus vulgaris",
+    "family": "Lamiaceae",
+    "plant_type": "herb",
+    "notes": "Drought-tolerant.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 5
+        },
+        {
+          "start_month": 3,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 10
+        },
+        {
+          "start_month": 5,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_thyme",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "6.0-8.0",
+      "soil_type": "sandy_well_drained_slightly_alkaline"
+    }
+  },
+  {
+    "id": "plant_tomato",
+    "name": "Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "family": "Solanaceae",
+    "plant_type": "vegetable",
+    "notes": "Requires staking and consistent watering.",
+    "companions": ["plant_zinnia"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        },
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 10
+        },
+        {
+          "start_month": 7,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_tomato",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-6.8",
+      "soil_type": "loamy_well_drained_rich"
+    }
+  },
+  {
+    "id": "plant_turmeric",
+    "name": "Turmeric",
+    "scientific_name": "Curcuma longa",
+    "family": "Zingiberaceae",
+    "plant_type": "herb",
+    "notes": "Long growing season (9 months).",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 4
+        },
+        {
+          "start_month": 2,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 11,
+          "end_month": 1
+        },
+        {
+          "start_month": 11,
+          "end_month": 1
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_turmeric",
+      "sunlight": "partial_shade",
+      "water_requirements": "high",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "loamy_rich_organic_well_drained"
+    }
+  },
+  {
+    "id": "plant_turnip",
+    "name": "Turnip",
+    "scientific_name": "Brassica rapa subsp. rapa",
+    "family": "Brassicaceae",
+    "plant_type": "vegetable",
+    "notes": "Greens edible.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 8
+        },
+        {
+          "start_month": 3,
+          "end_month": 8
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 5,
+          "end_month": 11
+        },
+        {
+          "start_month": 5,
+          "end_month": 11
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_turnip",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_watermelon",
+    "name": "Watermelon",
+    "scientific_name": "Citrullus lanatus",
+    "family": "Cucurbitaceae",
+    "plant_type": "fruit",
+    "notes": "Needs long warm season.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 7,
+          "end_month": 9
+        },
+        {
+          "start_month": 7,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_watermelon",
+      "sunlight": "full_sun",
+      "water_requirements": "high",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_long_bean",
+    "name": "Yardlong Bean",
+    "scientific_name": "Vigna unguiculata",
+    "family": "Fabaceae",
+    "plant_type": "vegetable",
+    "notes": "Vigorous climber.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 7
+        },
+        {
+          "start_month": 4,
+          "end_month": 7
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        },
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_long_bean",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-7.5",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_zinnia",
+    "name": "Zinnia",
+    "scientific_name": "Zinnia elegans",
+    "family": "Asteraceae",
+    "plant_type": "flower",
+    "notes": "Attracts butterflies.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        },
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_zinnia",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-7.0",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_zucchini",
+    "name": "Zucchini",
+    "scientific_name": "Cucurbita pepo",
+    "family": "Cucurbitaceae",
+    "plant_type": "vegetable",
+    "notes": "Heavy feeder; harvest regularly.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 6
+        },
+        {
+          "start_month": 4,
+          "end_month": 6
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 9
+        },
+        {
+          "start_month": 6,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_zucchini",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.5",
+      "soil_type": "loamy_rich_well_drained"
+    }
+  },
+  {
+    "id": "plant_rose",
+    "name": "Rose",
+    "scientific_name": "Rosa spp.",
+    "family": "Rosaceae",
+    "plant_type": "flower",
+    "notes": "Requires regular pruning and good air circulation.",
+    "companions": ["plant_lavender", "plant_garlic"],
+    "antagonists": ["plant_fennel"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_rose",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_marigold",
+    "name": "Marigold",
+    "scientific_name": "Tagetes erecta",
+    "family": "Asteraceae",
+    "plant_type": "flower",
+    "notes": "Known for suppressing soil nematodes.",
+    "companions": ["plant_tomato", "plant_beans"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 4,
+          "end_month": 5
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_marigold",
+      "sunlight": "full_sun",
+      "water_requirements": "low",
+      "soil_ph": "5.8-7.0",
+      "soil_type": "loamy_well_drained"
+    }
+  },
+  {
+    "id": "plant_apple_tree",
+    "name": "Apple Tree",
+    "scientific_name": "Malus domestica",
+    "family": "Rosaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Requires winter chill hours for proper fruiting.",
+    "companions": ["plant_chives", "plant_marigold"],
+    "antagonists": ["plant_walnut"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 2,
+          "end_month": 3
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 9,
+          "end_month": 10
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_apple_tree",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.0",
+      "soil_type": "loamy_well_drained_fertile"
+    }
+  },
+  {
+    "id": "plant_fern",
+    "name": "Fern",
+    "scientific_name": "Dryopteris filix-mas",
+    "family": "Dryopteridaceae",
+    "plant_type": "ornamental",
+    "notes": "Prefers consistently moist soil and shade.",
+    "companions": ["plant_hosta"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 6,
+          "end_month": 9
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_fern",
+      "sunlight": "partial_shade",
+      "water_requirements": "moderate",
+      "soil_ph": "4.0-7.0",
+      "soil_type": "moist_rich_acidic_organic"
+    }
+  },
+  {
+    "id": "plant_spider_plant",
+    "name": "Spider Plant",
+    "scientific_name": "Chlorophytum comosum",
+    "family": "Asparagaceae",
+    "plant_type": "indoor_plant",
+    "notes": "Highly tolerant of indoor conditions and low light.",
+    "companions": [],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_spider_plant",
+      "sunlight": "indirect_light",
+      "water_requirements": "moderate",
+      "soil_ph": "6.0-7.2",
+      "soil_type": "well_drained_loamy"
+    }
+  },
+  {
+    "id": "plant_lemon_tree",
+    "name": "Lemon Tree",
+    "scientific_name": "Citrus limon",
+    "family": "Rutaceae",
+    "plant_type": "fruit_tree",
+    "notes": "Sensitive to frost; often container-grown in cooler climates.",
+    "companions": ["plant_lavender"],
+    "antagonists": ["plant_potato"],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 11,
+          "end_month": 3
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_lemon_tree",
+      "sunlight": "full_sun",
+      "water_requirements": "moderate",
+      "soil_ph": "5.5-6.5",
+      "soil_type": "sandy_loam_well_drained"
+    }
+  },
+  {
+    "id": "plant_boxwood",
+    "name": "Boxwood",
+    "scientific_name": "Buxus sempervirens",
+    "family": "Buxaceae",
+    "plant_type": "ornamental_shrub",
+    "notes": "Commonly used for hedging and topiary.",
+    "companions": ["plant_fern"],
+    "antagonists": [],
+    "seasonality": {
+      "sowing": [
+        {
+          "start_month": 3,
+          "end_month": 4
+        }
+      ],
+      "harvest": [
+        {
+          "start_month": 1,
+          "end_month": 12
+        }
+      ]
+    },
+    "requirements": {
+      "plant_id": "plant_boxwood",
+      "sunlight": "partial_shade",
+      "water_requirements": "low",
+      "soil_ph": "6.5-7.5",
+      "soil_type": "loamy_well_drained"
+    }
+  }
+]
