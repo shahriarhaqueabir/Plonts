@@ -220,5 +220,69 @@ pub fn migrations() -> Migrations<'static> {
             );
             "#,
         ),
+        M::up(
+            r#"
+            CREATE TABLE problems (
+                id TEXT PRIMARY KEY,
+                planting_id TEXT,
+                symptom TEXT NOT NULL,
+                affected_part TEXT,
+                spread TEXT,
+                cause TEXT NOT NULL,
+                treatment TEXT NOT NULL,
+                prevention TEXT NOT NULL,
+                follow_up_at TEXT,
+                resolved INTEGER NOT NULL DEFAULT 0,
+                resolution_note TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                resolved_at TEXT
+            );
+            CREATE INDEX idx_problems_planting ON problems(planting_id);
+
+            CREATE TABLE seeds (
+                id TEXT PRIMARY KEY,
+                catalog_id TEXT,
+                variety TEXT NOT NULL,
+                source TEXT NOT NULL,
+                year INTEGER NOT NULL,
+                quantity INTEGER NOT NULL DEFAULT 1,
+                germination_notes TEXT,
+                viability_warned INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_seeds_catalog ON seeds(catalog_id);
+
+            CREATE TABLE harvests (
+                id TEXT PRIMARY KEY,
+                planting_id TEXT,
+                catalog_id TEXT,
+                date TEXT NOT NULL,
+                weight_g REAL,
+                count INTEGER,
+                notes TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_harvests_planting ON harvests(planting_id);
+            CREATE INDEX idx_harvests_catalog ON harvests(catalog_id);
+
+            CREATE TABLE shopping_items (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                category TEXT NOT NULL DEFAULT 'other',
+                quantity TEXT,
+                checked INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE TABLE tools (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                last_maintained TEXT,
+                next_maintenance TEXT,
+                notes TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            "#,
+        ),
     ])
 }
