@@ -60,6 +60,27 @@ pub fn run() {
             commands::journal::list_measurements,
             commands::journal::delete_measurement,
             commands::journal::get_plant_timeline,
+            commands::problems::diagnose_problem,
+            commands::problems::list_problems,
+            commands::problems::create_problem,
+            commands::problems::resolve_problem,
+            commands::problems::delete_problem,
+            commands::seeds::list_seeds,
+            commands::seeds::add_seed,
+            commands::seeds::delete_seed,
+            commands::seeds::acknowledge_seed_viability,
+            commands::harvests::list_harvests,
+            commands::harvests::add_harvest,
+            commands::harvests::delete_harvest,
+            commands::harvests::yield_summary,
+            commands::supplies::list_shopping_items,
+            commands::supplies::add_shopping_item,
+            commands::supplies::toggle_shopping_item,
+            commands::supplies::delete_shopping_item,
+            commands::supplies::list_tools,
+            commands::supplies::add_tool,
+            commands::supplies::mark_tool_maintained,
+            commands::supplies::delete_tool
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
