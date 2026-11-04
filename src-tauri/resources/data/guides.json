@@ -1,0 +1,89 @@
+[
+  {
+    "id": "guide-soil-basics",
+    "title": "Understanding Your Soil",
+    "topic": "soil",
+    "skill_level": "beginner",
+    "time_minutes": 20,
+    "materials": ["Trowel", "Glass jar with lid", "Water", "pH test kit"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "feel", "title": "Test the texture", "body": "Grab a damp handful of soil and squeeze it. Sandy soil falls apart, clay stays in a tight ball, and loam forms a loose crumb.", "checklist": ["Dig 15cm down", "Squeeze a damp handful", "Note how it crumbles"]},
+      {"id": "jar", "title": "Jar test for composition", "body": "Fill a jar one-third with soil, top with water, shake, and let it settle overnight. Sand, silt and clay separate into visible bands.", "checklist": ["Fill jar with soil and water", "Shake for one minute", "Let settle 24 hours", "Measure the bands"]},
+      {"id": "ph", "title": "Check the pH", "body": "Most vegetables prefer pH 6.0-7.0. Test with a kit and record the reading before amending.", "checklist": ["Collect a sample", "Run the pH test", "Record the reading"]}
+    ]
+  },
+  {
+    "id": "guide-compost-start",
+    "title": "Start a Compost Pile",
+    "topic": "composting",
+    "skill_level": "beginner",
+    "time_minutes": 45,
+    "materials": ["Bin or open pile", "Browns (leaves, cardboard)", "Greens (grass, scraps)", "Pitchfork"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "site", "title": "Pick a spot", "body": "Choose a level, well-drained spot out of direct wind, ideally part-shade.", "checklist": ["Level ground", "Easy to reach with a wheelbarrow"]},
+      {"id": "layer", "title": "Layer browns and greens", "body": "Build in alternating layers, roughly two parts browns to one part greens by volume.", "checklist": ["Start with coarse browns", "Add greens in a thin layer", "Repeat the layers"]},
+      {"id": "moist", "title": "Add water and turn", "body": "The pile should be as damp as a wrung-out sponge. Turn it every one to two weeks.", "checklist": ["Water until damp", "Turn with a pitchfork", "Check dampness weekly"]}
+    ]
+  },
+  {
+    "id": "guide-pruning-tomatoes",
+    "title": "Prune Indeterminate Tomatoes",
+    "topic": "pruning",
+    "skill_level": "intermediate",
+    "time_minutes": 15,
+    "materials": ["Clean secateurs", "Disinfectant wipe"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "suckers", "title": "Remove suckers", "body": "Pinch out the small shoots that grow in the angle between the main stem and a leaf branch.", "checklist": ["Identify the leaf axil", "Pinch out small suckers", "Cut larger ones with secateurs"]},
+      {"id": "lower", "title": "Trim lower leaves", "body": "Remove leaves touching the soil to reduce splash-borne disease.", "checklist": ["Remove soil-level leaves", "Keep the top canopy intact"]}
+    ]
+  },
+  {
+    "id": "guide-propagate-cuttings",
+    "title": "Propagate from Stem Cuttings",
+    "topic": "propagation",
+    "skill_level": "intermediate",
+    "time_minutes": 30,
+    "materials": ["Sharp knife", "Small pots", "Seed compost", "Rooting hormone (optional)", "Clear plastic bag"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "cut", "title": "Take the cutting", "body": "Cut a 10-15cm stem just below a leaf node, then remove the lower leaves.", "checklist": ["Cut below a node", "Remove lower leaves", "Keep two top leaves"]},
+      {"id": "plant", "title": "Pot and cover", "body": "Dip the base in rooting hormone, push into moist compost, and cover with a clear bag.", "checklist": ["Dip in hormone", "Insert into compost", "Cover to hold humidity"]},
+      {"id": "care", "title": "Keep moist and warm", "body": "Place in bright, indirect light and keep compost moist until roots form.", "checklist": ["Bright indirect light", "Water lightly", "Check for roots in 3-4 weeks"]}
+    ]
+  },
+  {
+    "id": "guide-pest-scout",
+    "title": "Scout for Common Pests",
+    "topic": "pests",
+    "skill_level": "beginner",
+    "time_minutes": 10,
+    "materials": ["Magnifying glass", "Notebook"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "look", "title": "Inspect undersides", "body": "Aphids, whitefly and mites hide under leaves. Check a few leaves per plant, top and bottom.", "checklist": ["Flip leaves over", "Check new growth tips", "Look for sticky honeydew"]},
+      {"id": "id", "title": "Identify before acting", "body": "Not every insect is a pest. Note what you find and confirm before spraying anything.", "checklist": ["Record what you see", "Confirm the species", "Only treat real pests"]}
+    ]
+  },
+  {
+    "id": "guide-seasonal-autumn",
+    "title": "Autumn Garden Cleanup",
+    "topic": "seasonal",
+    "skill_level": "beginner",
+    "time_minutes": 60,
+    "materials": ["Garden waste bags", "Secateurs", "Mulch"],
+    "illustrations": [],
+    "version": 1,
+    "steps": [
+      {"id": "clear", "title": "Clear spent plants", "body": "Remove finished annuals and diseased material, but leave healthy seed heads for wildlife.", "checklist": ["Remove diseased plants", "Leave seed heads", "Compost healthy waste"]},
+      {"id": "mulch", "title": "Mulch bare soil", "body": "Cover bare beds with a 5-8cm layer of mulch to protect soil structure over winter.", "checklist": ["Weed first", "Apply 5-8cm of mulch", "Keep stems clear of mulch"]}
+    ]
+  }
+]
