@@ -1,0 +1,27 @@
+{
+  "yellow_leaves": [
+    {"id": "cause-nitrogen", "name": "Nitrogen deficiency", "description": "Older leaves turn uniformly pale yellow while new growth stays greener; plants look stunted.", "treatment": "Feed with an organic nitrogen source (compost tea, blood meal, or liquid seaweed) and mulch with compost.", "prevention": "Top-dress beds with compost each season and avoid overwatering, which leaches nitrogen.", "organic": true, "image_asset_id": null},
+    {"id": "cause-overwater", "name": "Overwatering / root rot", "description": "Yellow, droopy leaves with persistently soggy soil and a musty smell.", "treatment": "Stop watering, improve drainage, and let the top few centimetres dry before watering again.", "prevention": "Water only when the top 2-3 cm of soil is dry; ensure containers have drainage holes.", "organic": true, "image_asset_id": null},
+    {"id": "cause-magnesium", "name": "Magnesium deficiency", "description": "Yellowing between the leaf veins (interveinal chlorosis), usually on older leaves first.", "treatment": "Apply an organic Epsom-salts foliar spray or a seaweed feed.", "prevention": "Use a balanced compost and avoid high-potassium feeds that can lock out magnesium.", "organic": true, "image_asset_id": null}
+  ],
+  "spots": [
+    {"id": "cause-leafspot", "name": "Fungal leaf spot", "description": "Brown or black spots, often with a yellow halo, spreading in humid conditions.", "treatment": "Remove affected leaves, improve air flow, and apply an organic copper or bicarbonate spray.", "prevention": "Water at the base rather than overhead and space plants for airflow.", "organic": true, "image_asset_id": null},
+    {"id": "cause-bacterial", "name": "Bacterial spot", "description": "Water-soaked, angular spots that darken and may ooze.", "treatment": "Remove infected leaves and apply a copper spray; sterilise tools after use.", "prevention": "Rotate crops and avoid handling wet plants.", "organic": true, "image_asset_id": null},
+    {"id": "cause-sunscald", "name": "Sunscald", "description": "Dry, pale or brown patches on leaves exposed to intense direct sun.", "treatment": "Provide shade cloth during the hottest hours.", "prevention": "Harden off seedlings gradually and site sun-sensitive plants in partial shade.", "organic": true, "image_asset_id": null}
+  ],
+  "holes": [
+    {"id": "cause-slugs", "name": "Slugs and snails", "description": "Large, irregular holes with silvery slime trails, worst after rain or at night.", "treatment": "Hand-pick at dusk, set beer traps, or apply copper tape around beds.", "prevention": "Clear debris and water in the morning so surfaces dry by night.", "organic": true, "image_asset_id": null},
+    {"id": "cause-caterpillar", "name": "Caterpillars", "description": "Chewed leaves with dark frass (droppings) nearby.", "treatment": "Hand-pick, or spray Bt (Bacillus thuringiensis), an organic caterpillar control.", "prevention": "Use row covers to keep adult moths from laying eggs.", "organic": true, "image_asset_id": null},
+    {"id": "cause-flea-beetle", "name": "Flea beetles", "description": "Many tiny 'shot-hole' punctures, especially on young seedlings.", "treatment": "Apply neem oil and protect seedlings with row covers.", "prevention": "Keep beds weed-free and use a trap crop such as radish.", "organic": true, "image_asset_id": null}
+  ],
+  "wilting": [
+    {"id": "cause-underwater", "name": "Underwatering", "description": "Dry soil with limp leaves that recover overnight.", "treatment": "Give a deep, slow soak at the base and mulch to retain moisture.", "prevention": "Water consistently and check soil moisture regularly in warm weather.", "organic": true, "image_asset_id": null},
+    {"id": "cause-overwater-wilt", "name": "Overwatering", "description": "Soggy soil with wilting and yellowing leaves that do not recover.", "treatment": "Let the soil dry out and improve drainage.", "prevention": "Water less often and ensure containers drain freely.", "organic": true, "image_asset_id": null},
+    {"id": "cause-wilt-disease", "name": "Fusarium / Verticillium wilt", "description": "Wilting on one branch or one side of the plant, often despite moist soil.", "treatment": "Remove and dispose of the plant (there is no cure); solarise the soil before replanting.", "prevention": "Choose resistant varieties and rotate crops.", "organic": true, "image_asset_id": null}
+  ],
+  "white_powder": [
+    {"id": "cause-powdery", "name": "Powdery mildew", "description": "White powdery coating on leaf surfaces in warm, humid conditions.", "treatment": "Spray a milk or bicarbonate solution, or neem; prune affected growth.", "prevention": "Improve air flow, space plants, and water at the base.", "organic": true, "image_asset_id": null},
+    {"id": "cause-downy", "name": "Downy mildew", "description": "White or grey fuzz on leaf undersides with yellowing tops.", "treatment": "Remove infected leaves and apply an organic copper spray.", "prevention": "Avoid overhead watering and improve air circulation.", "organic": true, "image_asset_id": null},
+    {"id": "cause-mealybug", "name": "Mealybugs", "description": "White, cottony clusters on stems and leaf joints (an insect, not a fungus).", "treatment": "Dab with rubbing alcohol and apply neem oil.", "prevention": "Inspect new plants before introducing them.", "organic": true, "image_asset_id": null}
+  ]
+}
