@@ -13,6 +13,8 @@ enum Tab {
     VirtualGarden,
     PlantKb,
     SowingCalendar,
+    Guides,
+    Journal,
     Settings,
 }
 
@@ -53,6 +55,8 @@ fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
         (Tab::VirtualGarden, "Virtual Garden"),
         (Tab::PlantKb, "Plant KB"),
         (Tab::SowingCalendar, "Sowing Calendar"),
+        (Tab::Guides, "Guides"),
+        (Tab::Journal, "Journal"),
         (Tab::Settings, "Settings"),
     ];
 
@@ -88,6 +92,8 @@ fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
                     Tab::VirtualGarden => view! { <pages::VirtualGardenPage /> }.into_any(),
                     Tab::PlantKb => view! { <pages::PlantKbPage /> }.into_any(),
                     Tab::SowingCalendar => view! { <pages::SowingCalendarPage /> }.into_any(),
+                    Tab::Guides => view! { <pages::GuidesPage /> }.into_any(),
+                    Tab::Journal => view! { <pages::JournalPage /> }.into_any(),
                     Tab::Settings => view! { <pages::SettingsPage /> }.into_any(),
                 } }
             </section>
