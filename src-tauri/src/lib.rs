@@ -20,6 +20,10 @@ pub fn run() {
             });
             Ok(())
         })
+        .invoke_handler(tauri::generate_handler![
+            commands::settings::get_settings,
+            commands::settings::update_settings
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -1,1 +1,1 @@
-// command modules are added incrementally in later tasks
+pub mod settings;

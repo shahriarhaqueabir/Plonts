@@ -1,5 +1,6 @@
 pub mod migrations;
 pub mod seed;
+pub mod settings;
 use std::path::Path;
 
 use rusqlite::Connection;
