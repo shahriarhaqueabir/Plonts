@@ -5,6 +5,9 @@ use crate::ipc;
 use crate::pages;
 use garden_core::models::Settings;
 
+#[derive(serde::Serialize)]
+struct UpdateSettingsArgs { settings: Settings }
+
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 enum Tab {
     VirtualGarden,
@@ -32,7 +35,7 @@ pub fn App() -> impl IntoView {
                         spawn_local(async move {
                             if let Ok(mut s) = ipc::call0::<Settings>("get_settings").await {
                                 s.first_load_complete = true;
-                                let _ = ipc::call::<Settings, _>("update_settings", &s).await;
+                                let _ = ipc::call::<Settings, _>("update_settings", &UpdateSettingsArgs { settings: s.clone() }).await;
                                 settings.set(Some(s));
                             }
                         });

@@ -4,6 +4,9 @@ use leptos::task::spawn_local;
 use crate::ipc;
 use garden_core::models::{ExperienceLevel, Hemisphere, Settings, Units};
 
+#[derive(serde::Serialize)]
+struct UpdateSettingsArgs { settings: Settings }
+
 #[component]
 pub fn Onboarding(on_complete: impl Fn() + 'static) -> impl IntoView {
     let hemisphere = RwSignal::new(Hemisphere::North);
@@ -44,7 +47,7 @@ pub fn Onboarding(on_complete: impl Fn() + 'static) -> impl IntoView {
                     s.city = if city.get().trim().is_empty() { None } else { Some(city.get()) };
                     s.experience_level = experience.get();
                     s.units = units.get();
-                    match ipc::call::<Settings, _>("update_settings", &s).await {
+                    match ipc::call::<Settings, _>("update_settings", &UpdateSettingsArgs { settings: s }).await {
                         Ok(_) => on_complete(),
                         Err(e) => { error.set(Some(e)); saving.set(false); }
                     }
