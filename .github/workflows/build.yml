@@ -1,0 +1,52 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system deps (Tauri)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache cargo
+        uses: swatinem/rust-cache@v2
+
+      - name: Install Trunk and Tauri CLI
+        run: |
+          cargo install --locked trunk
+          cargo install tauri-cli --version "^2" --locked
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Build CSS
+        run: |
+          pnpm install
+          pnpm css:build
+
+      - name: Unit tests (workspace)
+        run: cargo test --workspace
+
+      - name: Frontend build (Trunk)
+        run: trunk build --release
+
+      - name: Desktop build (Tauri)
+        run: cargo tauri build --no-bundle
