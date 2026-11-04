@@ -155,5 +155,70 @@ pub fn migrations() -> Migrations<'static> {
             );
             "#,
         ),
+        M::up(
+            r#"
+            CREATE TABLE guides (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                topic TEXT NOT NULL,
+                skill_level TEXT NOT NULL,
+                time_minutes INTEGER NOT NULL DEFAULT 15,
+                steps TEXT NOT NULL DEFAULT '[]',
+                materials TEXT NOT NULL DEFAULT '[]',
+                illustrations TEXT NOT NULL DEFAULT '[]',
+                version INTEGER NOT NULL DEFAULT 1
+            );
+
+            CREATE TABLE guide_progress (
+                guide_id TEXT PRIMARY KEY,
+                current_step INTEGER NOT NULL DEFAULT 0,
+                completed INTEGER NOT NULL DEFAULT 0,
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE TABLE guide_bookmarks (
+                guide_id TEXT PRIMARY KEY,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE TABLE journal_entries (
+                id TEXT PRIMARY KEY,
+                plant_id TEXT,
+                bed_id TEXT,
+                text TEXT NOT NULL,
+                tags TEXT NOT NULL DEFAULT '[]',
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_journal_plant ON journal_entries(plant_id);
+            CREATE INDEX idx_journal_bed ON journal_entries(bed_id);
+
+            CREATE TABLE journal_photos (
+                id TEXT PRIMARY KEY,
+                entry_id TEXT NOT NULL REFERENCES journal_entries(id) ON DELETE CASCADE,
+                path TEXT NOT NULL,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_photos_entry ON journal_photos(entry_id);
+
+            CREATE TABLE measurements (
+                id TEXT PRIMARY KEY,
+                plant_id TEXT NOT NULL,
+                kind TEXT NOT NULL,
+                value REAL NOT NULL,
+                unit TEXT NOT NULL,
+                recorded_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_measurements_plant ON measurements(plant_id);
+
+            CREATE TABLE daily_tips (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                body TEXT NOT NULL,
+                dismiss_until TEXT,
+                snoozed_until TEXT
+            );
+            "#,
+        ),
     ])
 }
