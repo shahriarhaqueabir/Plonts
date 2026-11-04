@@ -5,6 +5,7 @@ pub mod guides;
 pub mod journal;
 pub mod migrations;
 pub mod planted;
+pub mod problems;
 pub mod seed;
 pub mod settings;
 pub mod tips;
