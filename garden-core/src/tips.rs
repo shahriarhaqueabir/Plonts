@@ -1,5 +1,4 @@
 use chrono::Datelike;
-use chrono::NaiveDate;
 
 /// Parse an RFC3339 timestamp and return its day ordinal (days since 1 CE).
 /// Returns 0 on parse failure (callers pass chrono::Utc::now().to_rfc3339()).
@@ -53,7 +52,7 @@ mod tests {
     #[test]
     fn known_date_matches_epoch() {
         // 1970-01-01 is day 719163 in the proleptic Gregorian calendar (chrono).
-        let epoch = NaiveDate::from_ymd_opt(1970, 1, 1).unwrap();
+        let epoch = chrono::NaiveDate::from_ymd_opt(1970, 1, 1).unwrap();
         assert_eq!(epoch.num_days_from_ce(), 719163);
     }
 }

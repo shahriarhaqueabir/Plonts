@@ -5,10 +5,6 @@ use rusqlite::{params, Connection};
 use crate::error::{AppError, AppResult};
 use garden_core::models::{JournalEntry, JournalFilters, JournalPhoto, Measurement, MeasurementKind, PlantTimeline};
 
-fn json<T: serde::Serialize>(v: &T) -> AppResult<String> {
-    Ok(serde_json::to_string(v)?)
-}
-
 fn enum_str<T: serde::Serialize>(v: &T) -> String {
     serde_json::to_string(v).unwrap().trim_matches('"').to_string()
 }
