@@ -72,3 +72,40 @@ pub async fn pick_save_path() -> Result<Option<String>, String> {
     let args = SaveDialogArgs { filters: image_filters() };
     call::<Option<String>, _>("plugin:dialog|save", &args).await
 }
+
+#[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+struct PlantImageArgs {
+    catalog_id: String,
+}
+
+#[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+struct SetOverrideArgs {
+    catalog_id: String,
+    source_path: String,
+}
+
+pub async fn get_plant_image(catalog_id: &str) -> Result<garden_core::models::PlantImage, String> {
+    call("get_plant_image", &PlantImageArgs { catalog_id: catalog_id.to_string() }).await
+}
+
+pub async fn get_generic_image() -> Result<String, String> {
+    call0("get_generic_image").await
+}
+
+pub async fn set_plant_image_override(catalog_id: &str, source_path: &str) -> Result<garden_core::models::PlantImage, String> {
+    call(
+        "set_plant_image_override",
+        &SetOverrideArgs { catalog_id: catalog_id.to_string(), source_path: source_path.to_string() },
+    )
+    .await
+}
+
+pub async fn clear_plant_image_override(catalog_id: &str) -> Result<garden_core::models::PlantImage, String> {
+    call("clear_plant_image_override", &PlantImageArgs { catalog_id: catalog_id.to_string() }).await
+}
+
+pub async fn list_credits() -> Result<Vec<garden_core::models::Credit>, String> {
+    call0("list_credits").await
+}
