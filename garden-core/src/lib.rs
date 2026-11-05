@@ -1,6 +1,7 @@
 pub mod fts;
 pub mod images;
 pub mod inventory;
+pub mod layout;
 pub mod models;
 pub mod problems;
 pub mod seasonal;
