@@ -92,7 +92,23 @@ pub fn run() {
             commands::images::get_generic_image,
             commands::images::set_plant_image_override,
             commands::images::clear_plant_image_override,
-            commands::images::list_credits
+            commands::images::list_credits,
+            commands::layouts::list_layouts,
+            commands::layouts::get_layout,
+            commands::layouts::create_layout,
+            commands::layouts::save_layout,
+            commands::layouts::delete_layout,
+            commands::layouts::duplicate_layout,
+            commands::layouts::compare_layouts,
+            commands::layouts::list_layout_plants,
+            commands::layouts::add_layout_plant,
+            commands::layouts::update_layout_plant,
+            commands::layouts::delete_layout_plant,
+            commands::layouts::analyze_layout,
+            commands::layouts::save_export,
+            commands::rotation::list_rotation_plans,
+            commands::rotation::create_rotation_plan,
+            commands::rotation::delete_rotation_plan
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
