@@ -1,5 +1,6 @@
 pub mod calendar;
 pub mod catalog;
+pub mod chat;
 pub mod gardens;
 pub mod guides;
 pub mod harvests;
