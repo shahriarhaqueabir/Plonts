@@ -1,4 +1,5 @@
 mod app;
+mod canvas;
 mod components;
 mod ipc;
 mod pages;
