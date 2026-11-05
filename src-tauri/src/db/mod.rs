@@ -4,6 +4,7 @@ pub mod gardens;
 pub mod guides;
 pub mod harvests;
 pub mod journal;
+pub mod layouts;
 pub mod migrations;
 pub mod planted;
 pub mod problems;
