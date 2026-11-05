@@ -493,3 +493,75 @@ pub struct Credit {
     pub url: Option<String>,
     pub note: Option<String>,
 }
+
+// ---------- Layout planning ----------
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Layout {
+    pub id: String,
+    pub garden_id: String,
+    pub name: String,
+    pub version: i64,
+    pub canvas_json: String,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct LayoutPlant {
+    pub id: String,
+    pub layout_id: String,
+    pub catalog_id: String,
+    pub plant_name: String,
+    pub bed_id: Option<String>,
+    pub x: f64,
+    pub y: f64,
+    pub quantity: i64,
+    pub created_at: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct RotationPlan {
+    pub id: String,
+    pub garden_id: String,
+    pub season: String,
+    pub plant_family: String,
+    pub notes: Option<String>,
+    pub created_at: String,
+}
+
+/// A drawn bed shape stored inside `Layout.canvas_json` as a JSON array.
+/// `bed_id` on `LayoutPlant` references one of these shape ids (NOT the `beds` table).
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Default)]
+pub struct BedShape {
+    pub id: String,
+    pub name: String,
+    pub x: f64,
+    pub y: f64,
+    pub width_cm: f64,
+    pub height_cm: f64,
+    pub sun_exposure: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum WarningKind {
+    Overcrowding,
+    Companion,
+    Shade,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct LayoutWarning {
+    pub kind: WarningKind,
+    pub plant_a: String,
+    pub plant_b: Option<String>,
+    pub message: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Default)]
+pub struct LayoutDiff {
+    pub added: Vec<LayoutPlant>,
+    pub removed: Vec<LayoutPlant>,
+    pub moved: Vec<LayoutPlant>,
+}
