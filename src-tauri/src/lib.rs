@@ -1,6 +1,7 @@
 pub mod commands;
 pub mod db;
 pub mod error;
+pub mod images;
 pub mod state;
 pub mod storage;
 
@@ -14,14 +15,20 @@ pub fn run() {
         .setup(|app| {
             let dir = app.path().app_data_dir()?;
             std::fs::create_dir_all(&dir)?;
+            let resource_dir = app.path().resource_dir().unwrap_or_else(|_| dir.clone());
             let mut conn = db::open(&dir.join("lovelygarden.db"))?;
             db::migrate(&mut conn)?;
             db::seed::ensure_seeded(&mut conn)?;
             db::guides::ensure_guides_seeded(&mut conn)?;
             db::tips::ensure_tips_seeded(&mut conn)?;
+            let images = images::load_images()?;
+            let manifest = images::load_manifest()?;
             app.manage(AppState {
                 db: std::sync::Mutex::new(conn),
                 app_data: dir,
+                resource_dir,
+                images,
+                manifest,
             });
             Ok(())
         })

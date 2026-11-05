@@ -48,6 +48,47 @@ pub fn copy_photo_out(app_data: &Path, filename: &str, dest: &Path) -> AppResult
     Ok(())
 }
 
+pub fn plant_images_dir(app_data: &Path) -> PathBuf {
+    app_data.join("plant_images")
+}
+
+const PLANT_IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "svg", "webp"];
+
+/// Copy a user-picked image into `<app-data>/plant_images/` with a UUID filename.
+/// Rejects any extension not in the allow-list.
+pub fn save_plant_image(app_data: &Path, source: &Path) -> AppResult<String> {
+    if !source.is_file() {
+        return Err(AppError::InvalidInput(format!("not a file: {}", source.display())));
+    }
+    let ext = source
+        .extension()
+        .and_then(|e| e.to_str())
+        .unwrap_or("")
+        .to_ascii_lowercase();
+    if !PLANT_IMAGE_EXTS.contains(&ext.as_str()) {
+        return Err(AppError::InvalidInput(format!("unsupported image type .{}", ext)));
+    }
+    let dir = plant_images_dir(app_data);
+    std::fs::create_dir_all(&dir)?;
+    let filename = format!("{}.{}", uuid::Uuid::new_v4(), ext);
+    std::fs::copy(source, dir.join(&filename))?;
+    Ok(filename)
+}
+
+pub fn delete_plant_image(app_data: &Path, filename: &str) -> AppResult<()> {
+    let path = plant_images_dir(app_data).join(filename);
+    if path.exists() {
+        std::fs::remove_file(path)?;
+    }
+    Ok(())
+}
+
+/// `asset://` URL for a stored plant override.
+pub fn plant_image_url(app_data: &Path, filename: &str) -> String {
+    let abs = plant_images_dir(app_data).join(filename);
+    format!("asset://localhost/{}", abs.to_string_lossy().replace('\\', "/"))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -110,6 +151,41 @@ mod tests {
     fn rejects_missing_source() {
         let app = temp_app_data();
         assert!(save_photo_file(&app, &app.join("nope.jpg")).is_err());
+        let _ = std::fs::remove_dir_all(&app);
+    }
+
+    #[test]
+    fn plant_image_save_and_url() {
+        let app = temp_app_data();
+        let src = app.join("in.png");
+        write_bytes(&src, b"png-bytes");
+        let name = save_plant_image(&app, &src).unwrap();
+        assert!(name.ends_with(".png"));
+        assert!(plant_images_dir(&app).join(&name).exists());
+        let url = plant_image_url(&app, &name);
+        assert!(url.starts_with("asset://localhost/"));
+        assert!(url.ends_with(&name));
+        let _ = std::fs::remove_dir_all(&app);
+    }
+
+    #[test]
+    fn plant_image_rejects_disallowed_extension() {
+        let app = temp_app_data();
+        let src = app.join("in.txt");
+        write_bytes(&src, b"not-an-image");
+        assert!(save_plant_image(&app, &src).is_err());
+        let _ = std::fs::remove_dir_all(&app);
+    }
+
+    #[test]
+    fn plant_image_delete_removes_file() {
+        let app = temp_app_data();
+        let src = app.join("in.svg");
+        write_bytes(&src, b"<svg/>");
+        let name = save_plant_image(&app, &src).unwrap();
+        assert!(plant_images_dir(&app).join(&name).exists());
+        delete_plant_image(&app, &name).unwrap();
+        assert!(!plant_images_dir(&app).join(&name).exists());
         let _ = std::fs::remove_dir_all(&app);
     }
 }
