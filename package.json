@@ -2,7 +2,9 @@
   "name": "lovelygarden-frontend",
   "private": true,
   "scripts": {
-    "css:build": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --minify"
+    "build": "pnpm css:build && trunk build --release",
+    "css:build": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --minify",
+    "test:smoke": "cargo test --workspace"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0",
