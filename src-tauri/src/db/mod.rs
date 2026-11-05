@@ -6,6 +6,7 @@ pub mod harvests;
 pub mod journal;
 pub mod layouts;
 pub mod migrations;
+pub mod models;
 pub mod planted;
 pub mod problems;
 pub mod rotation;
