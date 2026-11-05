@@ -57,6 +57,31 @@ mod tests {
         assert!(!d.companions.is_empty());
         assert!(!d.sources.is_empty());
     }
+
+    #[test]
+    fn plant_image_meta_and_override_round_trip() {
+        let conn = seeded();
+        let meta = get_plant_image_meta(&conn, "plant_tomato").unwrap();
+        assert_eq!(meta.asset_id.as_deref(), Some("tomato"));
+        assert_eq!(meta.category.as_deref(), Some("vegetable"));
+        assert!(meta.override_filename.is_none());
+
+        set_plant_image_override(&conn, "plant_tomato", "abc.jpg").unwrap();
+        assert_eq!(get_plant_image_meta(&conn, "plant_tomato").unwrap().override_filename.as_deref(), Some("abc.jpg"));
+
+        let old = set_plant_image_override(&conn, "plant_tomato", "def.png").unwrap();
+        assert_eq!(old.as_deref(), Some("abc.jpg"));
+
+        let cleared = clear_plant_image_override(&conn, "plant_tomato").unwrap();
+        assert_eq!(cleared.as_deref(), Some("def.png"));
+        assert!(get_plant_image_meta(&conn, "plant_tomato").unwrap().override_filename.is_none());
+    }
+
+    #[test]
+    fn unknown_plant_image_meta_errors() {
+        let conn = seeded();
+        assert!(get_plant_image_meta(&conn, "plant_nope").is_err());
+    }
 }
 
 fn parse_json<T: serde::de::DeserializeOwned>(s: &str) -> T {
@@ -276,4 +301,65 @@ pub fn get_plant_detail(conn: &Connection, id: &str) -> AppResult<PlantDetail> {
         sources,
         confidence_score,
     })
+}
+
+pub struct PlantImageMeta {
+    pub asset_id: Option<String>,
+    pub image_path: Option<String>,
+    pub license: Option<String>,
+    pub attribution: Option<String>,
+    pub category: Option<String>,
+    pub override_filename: Option<String>,
+}
+
+pub fn get_plant_image_meta(conn: &Connection, catalog_id: &str) -> AppResult<PlantImageMeta> {
+    let row = conn
+        .query_row(
+            "SELECT image_asset_id, image_path, image_license, image_attribution, categories
+             FROM catalog WHERE id = ?1",
+            params![catalog_id],
+            |r| {
+                Ok((
+                    r.get::<_, Option<String>>(0)?,
+                    r.get::<_, Option<String>>(1)?,
+                    r.get::<_, Option<String>>(2)?,
+                    r.get::<_, Option<String>>(3)?,
+                    r.get::<_, String>(4)?,
+                ))
+            },
+        )
+        .map_err(|_| AppError::NotFound(catalog_id.to_string()))?;
+    let (asset_id, image_path, license, attribution, categories) = row;
+    let categories: Vec<String> = parse_json(&categories);
+    let category = categories.first().cloned();
+    let override_filename = conn
+        .query_row(
+            "SELECT path FROM plant_image_overrides WHERE catalog_id = ?1",
+            params![catalog_id],
+            |r| r.get::<_, String>(0),
+        )
+        .ok();
+    Ok(PlantImageMeta { asset_id, image_path, license, attribution, category, override_filename })
+}
+
+/// Upsert an override; returns the previous override filename (if any) for cleanup.
+pub fn set_plant_image_override(conn: &Connection, catalog_id: &str, filename: &str) -> AppResult<Option<String>> {
+    let previous = conn
+        .query_row("SELECT path FROM plant_image_overrides WHERE catalog_id = ?1", params![catalog_id], |r| r.get::<_, String>(0))
+        .ok();
+    conn.execute(
+        "INSERT INTO plant_image_overrides (catalog_id, path) VALUES (?1, ?2)
+         ON CONFLICT(catalog_id) DO UPDATE SET path = ?2, created_at = datetime('now')",
+        params![catalog_id, filename],
+    )?;
+    Ok(previous)
+}
+
+/// Remove an override; returns the removed filename (if any) for cleanup.
+pub fn clear_plant_image_override(conn: &Connection, catalog_id: &str) -> AppResult<Option<String>> {
+    let previous = conn
+        .query_row("SELECT path FROM plant_image_overrides WHERE catalog_id = ?1", params![catalog_id], |r| r.get::<_, String>(0))
+        .ok();
+    conn.execute("DELETE FROM plant_image_overrides WHERE catalog_id = ?1", params![catalog_id])?;
+    Ok(previous)
 }
