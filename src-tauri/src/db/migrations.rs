@@ -334,6 +334,68 @@ pub fn migrations() -> Migrations<'static> {
             CREATE INDEX idx_rotation_garden ON rotation_plans(garden_id);
             "#,
         ),
+        M::up(
+            r#"
+            CREATE TABLE chat_conversations (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                context_flags_json TEXT NOT NULL DEFAULT '{"garden":true,"zone":true,"tasks":true}',
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE TABLE chat_messages (
+                id TEXT PRIMARY KEY,
+                conversation_id TEXT NOT NULL REFERENCES chat_conversations(id) ON DELETE CASCADE,
+                role TEXT NOT NULL,
+                content TEXT NOT NULL,
+                sources_json TEXT NOT NULL DEFAULT '[]',
+                grounded INTEGER NOT NULL DEFAULT 0,
+                flagged INTEGER NOT NULL DEFAULT 0,
+                flag_note TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_chat_messages_conv ON chat_messages(conversation_id);
+
+            CREATE TABLE models (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                path TEXT NOT NULL,
+                size_bytes INTEGER NOT NULL DEFAULT 0,
+                kind TEXT NOT NULL DEFAULT 'text',
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                last_used_at TEXT
+            );
+
+            CREATE TABLE tasks (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                body TEXT,
+                status TEXT NOT NULL DEFAULT 'open',
+                due_at TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE TABLE chat_attachments (
+                id TEXT PRIMARY KEY,
+                message_id TEXT NOT NULL REFERENCES chat_messages(id) ON DELETE CASCADE,
+                path TEXT NOT NULL,
+                mime TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_chat_attachments_msg ON chat_attachments(message_id);
+
+            CREATE VIRTUAL TABLE guides_fts USING fts5(
+                id UNINDEXED,
+                title,
+                topic,
+                skill_level,
+                steps,
+                materials
+            );
+            "#,
+        ),
     ])
 }
 
@@ -381,5 +443,29 @@ mod tests {
                 .unwrap();
             assert_eq!(n, 1, "missing table {table}");
         }
+    }
+
+    #[test]
+    fn migration_six_adds_llm_tables() {
+        let mut conn = Connection::open_in_memory().unwrap();
+        migrations().to_latest(&mut conn).unwrap();
+        for table in ["chat_conversations", "chat_messages", "models", "tasks", "chat_attachments"] {
+            let n: i64 = conn
+                .query_row(
+                    "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name=?1",
+                    [table],
+                    |r| r.get(0),
+                )
+                .unwrap();
+            assert_eq!(n, 1, "missing table {table}");
+        }
+        let n: i64 = conn
+            .query_row(
+                "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='guides_fts'",
+                [],
+                |r| r.get(0),
+            )
+            .unwrap();
+        assert_eq!(n, 1);
     }
 }
