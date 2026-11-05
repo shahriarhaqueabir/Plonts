@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use leptos::task::spawn_local;
 
 use crate::ipc;
+use crate::components::plant_image::{GenericLeaf, PlantThumbnail};
 use garden_core::models::{Bed, Garden, Planting, SearchResult};
 
 #[derive(serde::Serialize)]
@@ -190,8 +191,9 @@ pub fn VirtualGardenPage() -> impl IntoView {
                 <section class="card p-4">
                     <h2 class="mb-3 text-xs font-black uppercase tracking-widest text-stone-500">"Inventory"</h2>
                     <For each=move || plantings.get() key=|p| p.id.clone() let:p>
-                        <div class="mb-2 flex items-center justify-between rounded-lg border border-stone-800 bg-stone-950 p-3">
-                            <div>
+                        <div class="mb-2 flex items-center gap-3 rounded-lg border border-stone-800 bg-stone-950 p-3">
+                            <PlantThumbnail catalog_id=p.catalog_id.clone() size_px=32 />
+                            <div class="min-w-0 flex-1">
                                 <div class="text-sm font-bold text-stone-200">{p.plant_name.clone()}</div>
                                 <div class="text-[11px] text-stone-500">
                                     {p.bed_name.clone()} " - " {p.quantity} " x " {p.source.clone()} " - " {p.status.clone()}
@@ -201,7 +203,12 @@ pub fn VirtualGardenPage() -> impl IntoView {
                         </div>
                     </For>
                     { move || if plantings.get().is_empty() {
-                        view! { <p class="text-sm text-stone-500">"Nothing planted yet."</p> }.into_any()
+                        view! {
+                            <div class="flex flex-col items-center gap-3 py-8 text-center">
+                                <GenericLeaf size_px=96 />
+                                <p class="text-sm text-stone-500">"Nothing planted yet. Add your first planting on the left."</p>
+                            </div>
+                        }.into_any()
                     } else {
                         view! { <span></span> }.into_any()
                     } }

@@ -41,6 +41,26 @@ pub fn PlantImage(
     }
 }
 
+/// Fetches and renders a plant image for a catalog_id at a fixed square size.
+/// Wraps the fetch in its own LocalResource + Suspense.
+#[component]
+pub fn PlantThumbnail(catalog_id: String, size_px: u32) -> impl IntoView {
+    let image = LocalResource::new(move || {
+        let id = catalog_id.clone();
+        async move { crate::ipc::get_plant_image(&id).await.ok() }
+    });
+
+    view! {
+        <Suspense fallback=move || view! {
+            <div class="shrink-0 rounded-md bg-stone-800" style=move || format!("width:{size_px}px;height:{size_px}px")></div>
+        }>
+            { move || image.get().flatten().map(|img| view! {
+                <PlantImage image=img size_px=size_px />
+            }) }
+        </Suspense>
+    }
+}
+
 /// Generic leaf illustration for empty states and onboarding.
 #[component]
 pub fn GenericLeaf(#[prop(default = 96)] size_px: u32) -> impl IntoView {
