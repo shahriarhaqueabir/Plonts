@@ -1,3 +1,4 @@
+pub mod coach;
 pub mod guides;
 pub mod journal;
 pub mod layout;
@@ -10,6 +11,7 @@ pub mod settings;
 pub mod sowing_calendar;
 pub mod virtual_garden;
 
+pub use coach::CoachPage;
 pub use guides::GuidesPage;
 pub use journal::JournalPage;
 pub use layout::LayoutPage;
