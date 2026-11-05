@@ -456,9 +456,9 @@ pub fn LayoutPage() -> impl IntoView {
                     node_ref=canvas_ref
                     class="rounded-xl border border-stone-800 bg-stone-950"
                     style="width:1000px;height:700px"
-                    on:mousedown=move |ev| on_down(ev)
-                    on:mousemove=move |ev| on_move(ev)
-                    on:mouseup=move |ev| on_up(ev)
+                    on:mousedown=on_down
+                    on:mousemove=on_move
+                    on:mouseup=on_up
                     on:mouseleave=move |_| { drag.set(None); redraw(); }
                 ></canvas>
             </div>

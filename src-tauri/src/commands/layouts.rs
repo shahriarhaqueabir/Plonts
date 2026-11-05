@@ -92,7 +92,7 @@ pub fn analyze_layout(state: State<AppState>, layout_id: String) -> AppResult<Ve
 
 /// Write a base64-encoded PNG export to a user-chosen path.
 #[tauri::command]
-pub fn save_export(state: State<AppState>, path: String, data_base64: String) -> AppResult<()> {
+pub fn save_export(path: String, data_base64: String) -> AppResult<()> {
     use base64::Engine;
     let bytes = base64::engine::general_purpose::STANDARD
         .decode(data_base64.trim())
