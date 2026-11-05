@@ -87,7 +87,12 @@ pub fn run() {
             commands::supplies::list_tools,
             commands::supplies::add_tool,
             commands::supplies::mark_tool_maintained,
-            commands::supplies::delete_tool
+            commands::supplies::delete_tool,
+            commands::images::get_plant_image,
+            commands::images::get_generic_image,
+            commands::images::set_plant_image_override,
+            commands::images::clear_plant_image_override,
+            commands::images::list_credits
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
