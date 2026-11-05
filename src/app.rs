@@ -11,6 +11,7 @@ struct UpdateSettingsArgs { settings: Settings }
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 enum Tab {
     VirtualGarden,
+    Layout,
     PlantKb,
     SowingCalendar,
     Guides,
@@ -55,6 +56,7 @@ pub fn App() -> impl IntoView {
 fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
     let tabs: Vec<(Tab, &'static str)> = vec![
         (Tab::VirtualGarden, "Virtual Garden"),
+        (Tab::Layout, "Layout"),
         (Tab::PlantKb, "Plant KB"),
         (Tab::SowingCalendar, "Sowing Calendar"),
         (Tab::Guides, "Guides"),
@@ -94,6 +96,7 @@ fn AppShell(tab: RwSignal<Tab>) -> impl IntoView {
             <section class="flex-1 overflow-auto">
                 { move || match tab.get() {
                     Tab::VirtualGarden => view! { <pages::VirtualGardenPage /> }.into_any(),
+                    Tab::Layout => view! { <pages::LayoutPage /> }.into_any(),
                     Tab::PlantKb => view! { <pages::PlantKbPage /> }.into_any(),
                     Tab::SowingCalendar => view! { <pages::SowingCalendarPage /> }.into_any(),
                     Tab::Guides => view! { <pages::GuidesPage /> }.into_any(),
