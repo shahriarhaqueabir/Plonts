@@ -8,6 +8,7 @@ pub mod layouts;
 pub mod migrations;
 pub mod planted;
 pub mod problems;
+pub mod rotation;
 pub mod seed;
 pub mod seeds;
 pub mod settings;
