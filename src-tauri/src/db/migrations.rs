@@ -284,5 +284,49 @@ pub fn migrations() -> Migrations<'static> {
             );
             "#,
         ),
+        M::up(
+            r#"
+            ALTER TABLE catalog ADD COLUMN image_asset_id TEXT;
+            ALTER TABLE catalog ADD COLUMN image_path TEXT;
+            ALTER TABLE catalog ADD COLUMN image_license TEXT;
+            ALTER TABLE catalog ADD COLUMN image_attribution TEXT;
+
+            CREATE TABLE plant_image_overrides (
+                catalog_id TEXT PRIMARY KEY REFERENCES catalog(id) ON DELETE CASCADE,
+                path TEXT NOT NULL,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            "#,
+        ),
     ])
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rusqlite::Connection;
+
+    #[test]
+    fn migration_four_adds_image_columns_and_override_table() {
+        let mut conn = Connection::open_in_memory().unwrap();
+        migrations().to_latest(&mut conn).unwrap();
+
+        let cols: Vec<String> = {
+            let mut stmt = conn.prepare("PRAGMA table_info(catalog)").unwrap();
+            let rows = stmt.query_map([], |r| r.get::<_, String>(1)).unwrap();
+            rows.collect::<Result<_, _>>().unwrap()
+        };
+        for c in ["image_asset_id", "image_path", "image_license", "image_attribution"] {
+            assert!(cols.iter().any(|x| x == c), "missing catalog column {c}");
+        }
+
+        let n: i64 = conn
+            .query_row(
+                "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='plant_image_overrides'",
+                [],
+                |r| r.get(0),
+            )
+            .unwrap();
+        assert_eq!(n, 1);
+    }
 }
