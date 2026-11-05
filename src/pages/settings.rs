@@ -16,7 +16,7 @@ pub fn SettingsPage() -> impl IntoView {
     let units = RwSignal::new(Units::Metric);
     let theme = RwSignal::new(Theme::Dark);
     let saved = RwSignal::new(false);
-
+    let credits = LocalResource::new(move || async move { crate::ipc::list_credits().await.ok() });
     spawn_local(async move {
         if let Ok(s) = ipc::call0::<Settings>("get_settings").await {
             hemisphere.set(s.hemisphere);
@@ -116,6 +116,25 @@ pub fn SettingsPage() -> impl IntoView {
                     } }
                 </div>
             </div>
+                <section class="card mt-8 max-w-2xl p-4">
+                    <h2 class="mb-3 text-xs font-black uppercase tracking-widest text-stone-500">"Credits & Licenses"</h2>
+                    <Suspense fallback=move || view! { <p class="text-sm text-stone-500">"Loading..."</p> }>
+                        { move || credits.get().flatten().map(|list| view! {
+                            <ul class="space-y-2">
+                                <For each=move || list.clone() key=|c| c.source.clone() let:c>
+                                    <li class="text-sm text-stone-400">
+                                        <span class="font-bold text-stone-200">{c.source.clone()}</span>
+                                        <span class="text-stone-500">" — " {c.license.clone()}</span>
+                                        { c.note.clone().map(|n| view! { <span class="text-stone-500">" (" {n} ")"</span> }) }
+                                        { c.url.clone().map(|u| view! {
+                                            <a class="ml-1 text-garden-400 hover:underline" href=u target="_blank">"source"</a>
+                                        }) }
+                                    </li>
+                                </For>
+                            </ul>
+                        }) }
+                    </Suspense>
+                </section>
         </div>
     }
 }
