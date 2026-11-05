@@ -14,6 +14,7 @@ pub mod seed;
 pub mod seeds;
 pub mod settings;
 pub mod supplies;
+pub mod tasks;
 pub mod tips;
 use std::path::Path;
 
