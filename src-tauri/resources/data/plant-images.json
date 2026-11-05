@@ -1,1 +1,24 @@
-{}
+{
+  "species": [
+    { "plant_id": "plant_tomato", "asset_id": "tomato" },
+    { "plant_id": "plant_carrot", "asset_id": "carrot" },
+    { "plant_id": "plant_basil", "asset_id": "basil" },
+    { "plant_id": "plant_mint", "asset_id": "mint" },
+    { "plant_id": "plant_lavender", "asset_id": "lavender" },
+    { "plant_id": "plant_strawberry", "asset_id": "strawberry" },
+    { "plant_id": "plant_sunflower", "asset_id": "sunflower" },
+    { "plant_id": "plant_rose", "asset_id": "rose" }
+  ],
+  "categories": [
+    { "category": "vegetable", "asset_id": "cat_vegetable" },
+    { "category": "herb", "asset_id": "cat_herb" },
+    { "category": "fruit", "asset_id": "cat_fruit" },
+    { "category": "fruit_tree", "asset_id": "cat_fruit_tree" },
+    { "category": "tree", "asset_id": "cat_tree" },
+    { "category": "flower", "asset_id": "cat_flower" },
+    { "category": "ornamental", "asset_id": "cat_ornamental" },
+    { "category": "ornamental_shrub", "asset_id": "cat_ornamental_shrub" },
+    { "category": "indoor_plant", "asset_id": "cat_indoor_plant" }
+  ],
+  "generic_asset_id": "generic_leaf"
+}

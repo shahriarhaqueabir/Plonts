@@ -1,1 +1,6 @@
-[]
+[
+  { "source": "Twemoji", "license": "CC BY 4.0", "url": "https://twemoji.twitter.com/", "note": "Plant, category and generic-leaf glyphs" },
+  { "source": "svgrepo", "license": "CC0 1.0", "url": "https://www.svgrepo.com/", "note": "Line-art plant icons (expansion set)" },
+  { "source": "Wikimedia Commons", "license": "CC0 / Public Domain", "url": "https://commons.wikimedia.org/", "note": "Botanical illustrations (expansion set)" },
+  { "source": "Biodiversity Heritage Library", "license": "Public Domain", "url": "https://www.biodiversitylibrary.org/", "note": "Historical botanical plates (deferred)" }
+]

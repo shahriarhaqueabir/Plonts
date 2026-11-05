@@ -6,13 +6,17 @@ const SOURCES_JSON: &str = include_str!("../../resources/data/sources.json");
 const CATALOG_JSON: &str = include_str!("../../resources/data/plants-catalog.json");
 const KB_JSON: &str = include_str!("../../resources/data/plants-kb.json");
 
-pub const CURRENT_DATA_VERSION: i64 = 1;
+pub const CURRENT_DATA_VERSION: i64 = 2;
 
 pub fn load_seed_data() -> AppResult<garden_core::seed::SeedData> {
     let sources: Vec<garden_core::seed::RawSource> = serde_json::from_str(SOURCES_JSON)?;
     let catalog: Vec<garden_core::seed::RawCatalogPlant> = serde_json::from_str(CATALOG_JSON)?;
     let kb: Vec<garden_core::seed::RawKbEntry> = serde_json::from_str(KB_JSON)?;
-    Ok(garden_core::seed::synthesize(&sources, &catalog, &kb))
+    let mut data = garden_core::seed::synthesize(&sources, &catalog, &kb);
+    let images = crate::images::load_images()?;
+    let manifest = crate::images::load_manifest()?;
+    garden_core::images::assign_images(&mut data.catalog, &images, &manifest);
+    Ok(data)
 }
 
 use garden_core::models::RelationType;
@@ -55,8 +59,9 @@ pub fn seed(conn: &mut Connection) -> AppResult<()> {
              (id, name, scientific_name, description, family, categories, life_cycle,
               growth_habit, photosynthesis_type, edible_parts, toxic_parts, pollination_type,
               sowing_season, sowing_method, stages, confidence_score, sunlight, water_requirements,
-              soil_type, preferred_ph, common_pests, common_diseases, nutrient_preferences, seasonality)
-             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24)",
+              soil_type, preferred_ph, common_pests, common_diseases, nutrient_preferences, seasonality,
+              image_asset_id, image_path, image_license, image_attribution)
+             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25,?26,?27,?28)",
             params![
                 c.id,
                 c.name,
@@ -82,6 +87,10 @@ pub fn seed(conn: &mut Connection) -> AppResult<()> {
                 json(&c.common_diseases)?,
                 json(&c.nutrient_preferences)?,
                 json(&c.seasonality)?,
+                opt(&c.image_asset_id),
+                opt(&c.image_path),
+                opt(&c.image_license),
+                opt(&c.image_attribution),
             ],
         )?;
     }
@@ -260,5 +269,19 @@ mod seed_db_tests {
             )
             .unwrap();
         assert!(by_name > 0);
+    }
+
+    #[test]
+    fn seed_assigns_species_images() {
+        let mut conn = in_memory();
+        seed(&mut conn).unwrap();
+        let asset: Option<String> = conn
+            .query_row("SELECT image_asset_id FROM catalog WHERE id='plant_tomato'", [], |r| r.get(0))
+            .unwrap();
+        assert_eq!(asset.as_deref(), Some("tomato"));
+        let path: Option<String> = conn
+            .query_row("SELECT image_path FROM catalog WHERE id='plant_tomato'", [], |r| r.get(0))
+            .unwrap();
+        assert_eq!(path.as_deref(), Some("vegetable/tomato.svg"));
     }
 }

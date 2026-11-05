@@ -1,1 +1,23 @@
-{}
+{
+  "data_version": 1,
+  "assets": {
+    "generic_leaf": { "path": "generic/leaf.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f331.svg" },
+    "cat_vegetable": { "path": "categories/vegetable.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f96c.svg" },
+    "cat_herb": { "path": "categories/herb.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f33f.svg" },
+    "cat_fruit": { "path": "categories/fruit.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f34e.svg" },
+    "cat_fruit_tree": { "path": "categories/fruit_tree.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f333.svg" },
+    "cat_tree": { "path": "categories/tree.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f332.svg" },
+    "cat_flower": { "path": "categories/flower.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f337.svg" },
+    "cat_ornamental": { "path": "categories/ornamental.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f33a.svg" },
+    "cat_ornamental_shrub": { "path": "categories/ornamental_shrub.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1fab4.svg" },
+    "cat_indoor_plant": { "path": "categories/indoor_plant.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f335.svg" },
+    "tomato": { "path": "vegetable/tomato.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f345.svg" },
+    "carrot": { "path": "vegetable/carrot.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f955.svg" },
+    "basil": { "path": "herb/basil.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f33f.svg" },
+    "mint": { "path": "herb/mint.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f343.svg" },
+    "lavender": { "path": "herb/lavender.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1fab7.svg" },
+    "strawberry": { "path": "fruit/strawberry.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f353.svg" },
+    "sunflower": { "path": "flower/sunflower.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f33b.svg" },
+    "rose": { "path": "flower/rose.svg", "license": "CC BY 4.0", "attribution": "Twemoji", "source_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f339.svg" }
+  }
+}
