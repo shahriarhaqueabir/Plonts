@@ -3,6 +3,7 @@ use std::sync::Mutex;
 
 use rusqlite::Connection;
 
+use crate::llm::LoadedModel;
 use garden_core::images::{ImageManifest, PlantImages};
 
 pub struct AppState {
@@ -11,4 +12,5 @@ pub struct AppState {
     pub resource_dir: PathBuf,
     pub images: PlantImages,
     pub manifest: ImageManifest,
+    pub llm: Mutex<Option<LoadedModel>>,
 }

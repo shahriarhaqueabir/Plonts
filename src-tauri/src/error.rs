@@ -16,6 +16,8 @@ pub enum AppError {
     NotFound(String),
     #[error("invalid input: {0}")]
     InvalidInput(String),
+    #[error("llm error: {0}")]
+    Llm(String),
 }
 
 impl Serialize for AppError {

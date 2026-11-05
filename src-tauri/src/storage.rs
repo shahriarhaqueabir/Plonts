@@ -52,6 +52,46 @@ pub fn plant_images_dir(app_data: &Path) -> PathBuf {
     app_data.join("plant_images")
 }
 
+pub fn models_dir(app_data: &Path) -> PathBuf {
+    app_data.join("models")
+}
+
+const MODEL_EXTS: &[&str] = &["gguf"];
+
+/// Copy a user-picked model file into `<app-data>/models/` with a UUID filename.
+/// Rejects any extension not in the allow-list (gguf).
+pub fn save_model_file(app_data: &Path, source: &Path) -> AppResult<String> {
+    if !source.is_file() {
+        return Err(AppError::InvalidInput(format!("not a file: {}", source.display())));
+    }
+    let ext = source
+        .extension()
+        .and_then(|e| e.to_str())
+        .unwrap_or("")
+        .to_ascii_lowercase();
+    if !MODEL_EXTS.contains(&ext.as_str()) {
+        return Err(AppError::InvalidInput(format!("unsupported model type .{}", ext)));
+    }
+    let dir = models_dir(app_data);
+    std::fs::create_dir_all(&dir)?;
+    let filename = format!("{}.{}", uuid::Uuid::new_v4(), ext);
+    std::fs::copy(source, dir.join(&filename))?;
+    Ok(filename)
+}
+
+pub fn delete_model_file(app_data: &Path, filename: &str) -> AppResult<()> {
+    let path = models_dir(app_data).join(filename);
+    if path.exists() {
+        std::fs::remove_file(path)?;
+    }
+    Ok(())
+}
+
+/// `asset://`-style absolute path? Models aren't loaded via asset protocol; return absolute path.
+pub fn model_path(app_data: &Path, filename: &str) -> PathBuf {
+    models_dir(app_data).join(filename)
+}
+
 const PLANT_IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "svg", "webp"];
 
 /// Copy a user-picked image into `<app-data>/plant_images/` with a UUID filename.

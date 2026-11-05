@@ -2,6 +2,7 @@ pub mod commands;
 pub mod db;
 pub mod error;
 pub mod images;
+pub mod llm;
 pub mod state;
 pub mod storage;
 
@@ -29,6 +30,7 @@ pub fn run() {
                 resource_dir,
                 images,
                 manifest,
+                llm: std::sync::Mutex::new(None),
             });
             Ok(())
         })
@@ -108,7 +110,29 @@ pub fn run() {
             commands::layouts::save_export,
             commands::rotation::list_rotation_plans,
             commands::rotation::create_rotation_plan,
-            commands::rotation::delete_rotation_plan
+            commands::rotation::delete_rotation_plan,
+            commands::models::list_models,
+            commands::models::import_model,
+            commands::models::delete_model,
+            commands::llm::load_model,
+            commands::llm::unload_model,
+            commands::llm::get_model_status,
+            commands::llm::generate_chat,
+            commands::chat::list_conversations,
+            commands::chat::create_conversation,
+            commands::chat::update_conversation_flags,
+            commands::chat::delete_conversation,
+            commands::chat::clear_conversation,
+            commands::chat::clear_all_conversations,
+            commands::chat::list_messages,
+            commands::chat::flag_message,
+            commands::chat::create_tasks_from_text,
+            commands::chat::create_journal_from_text,
+            commands::chat::create_layout_from_text,
+            commands::tasks::list_tasks,
+            commands::tasks::create_task,
+            commands::tasks::set_task_status,
+            commands::tasks::delete_task
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
