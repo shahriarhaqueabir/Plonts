@@ -2324,12 +2324,14 @@ dependencies = [
  "serde_json",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]
 name = "lovelygarden-tauri"
 version = "0.1.0"
 dependencies = [
+ "base64 0.22.1",
  "chrono",
  "garden-core",
  "reqwest 0.12.28",

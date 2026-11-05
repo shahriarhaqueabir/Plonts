@@ -109,3 +109,32 @@ pub async fn clear_plant_image_override(catalog_id: &str) -> Result<garden_core:
 pub async fn list_credits() -> Result<Vec<garden_core::models::Credit>, String> {
     call0("list_credits").await
 }
+
+#[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+struct SaveExportArgs {
+    path: String,
+    data_base64: String,
+}
+
+/// Send a base64 PNG to the backend to be written to `path`.
+pub async fn save_export(path: &str, data_base64: &str) -> Result<(), String> {
+    call(
+        "save_export",
+        &SaveExportArgs { path: path.to_string(), data_base64: data_base64.to_string() },
+    )
+    .await
+}
+
+fn png_filters() -> Vec<DialogFilter> {
+    vec![DialogFilter {
+        name: "PNG image".to_string(),
+        extensions: vec!["png".to_string()],
+    }]
+}
+
+/// Open a native save dialog filtered to PNG; returns the chosen path, or None.
+pub async fn pick_png_save_path() -> Result<Option<String>, String> {
+    let args = SaveDialogArgs { filters: png_filters() };
+    call::<Option<String>, _>("plugin:dialog|save", &args).await
+}
