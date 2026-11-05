@@ -10,6 +10,7 @@ pub mod migrations;
 pub mod models;
 pub mod planted;
 pub mod problems;
+pub mod retrieval;
 pub mod rotation;
 pub mod seed;
 pub mod seeds;

@@ -62,6 +62,13 @@ pub fn seed_guides(conn: &mut Connection) -> AppResult<()> {
             ],
         )?;
     }
+    tx.execute("DELETE FROM guides_fts", [])?;
+    for g in &guides {
+        tx.execute(
+            "INSERT INTO guides_fts (id, title, topic, skill_level, steps, materials) VALUES (?1,?2,?3,?4,?5,?6)",
+            params![g.id, g.title, enum_str(&g.topic), enum_str(&g.skill_level), json(&g.steps)?, json(&g.materials)?],
+        )?;
+    }
     tx.execute(
         "INSERT OR REPLACE INTO content_packs (id, version) VALUES ('guides', ?1)",
         params![CURRENT_GUIDE_VERSION],
