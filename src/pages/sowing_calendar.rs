@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use leptos::task::spawn_local;
 
 use crate::ipc;
+use crate::components::plant_image::PlantThumbnail;
 use garden_core::models::{CalendarEntry, Hemisphere, Settings};
 
 #[derive(serde::Serialize)]
@@ -68,9 +69,12 @@ pub fn SowingCalendarPage() -> impl IntoView {
                     </h2>
                     <div class="space-y-2">
                         <For each=eligible key=|e| e.plant.id.clone() let:e>
-                            <div class="rounded-lg border border-garden-500/20 bg-garden-900/10 p-3">
-                                <div class="text-sm font-bold text-stone-100">{e.plant.name.clone()}</div>
-                                <div class="text-xs italic text-stone-500">{e.plant.scientific_name.clone().unwrap_or_default()}</div>
+                            <div class="flex items-center gap-2 rounded-lg border border-garden-500/20 bg-garden-900/10 p-3">
+                                <PlantThumbnail catalog_id=e.plant.id.clone() size_px=24 />
+                                <div class="min-w-0">
+                                    <div class="text-sm font-bold text-stone-100">{e.plant.name.clone()}</div>
+                                    <div class="text-xs italic text-stone-500">{e.plant.scientific_name.clone().unwrap_or_default()}</div>
+                                </div>
                             </div>
                         </For>
                     </div>
@@ -82,9 +86,12 @@ pub fn SowingCalendarPage() -> impl IntoView {
                     </h2>
                     <div class="space-y-2">
                         <For each=ineligible key=|e| e.plant.id.clone() let:e>
-                            <div class="rounded-lg border border-amber-500/10 bg-amber-900/5 p-3">
-                                <div class="text-sm font-bold text-stone-100">{e.plant.name.clone()}</div>
-                                <div class="text-xs text-stone-500">{e.reason.clone()}</div>
+                            <div class="flex items-center gap-2 rounded-lg border border-amber-500/10 bg-amber-900/5 p-3">
+                                <PlantThumbnail catalog_id=e.plant.id.clone() size_px=24 />
+                                <div class="min-w-0">
+                                    <div class="text-sm font-bold text-stone-100">{e.plant.name.clone()}</div>
+                                    <div class="text-xs text-stone-500">{e.reason.clone()}</div>
+                                </div>
                             </div>
                         </For>
                     </div>
