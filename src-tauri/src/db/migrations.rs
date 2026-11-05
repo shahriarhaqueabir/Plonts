@@ -298,6 +298,42 @@ pub fn migrations() -> Migrations<'static> {
             );
             "#,
         ),
+        M::up(
+            r#"
+            CREATE TABLE layouts (
+                id TEXT PRIMARY KEY,
+                garden_id TEXT NOT NULL REFERENCES gardens(id) ON DELETE CASCADE,
+                name TEXT NOT NULL,
+                version INTEGER NOT NULL DEFAULT 1,
+                canvas_json TEXT NOT NULL DEFAULT '[]',
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_layouts_garden ON layouts(garden_id);
+
+            CREATE TABLE layout_plants (
+                id TEXT PRIMARY KEY,
+                layout_id TEXT NOT NULL REFERENCES layouts(id) ON DELETE CASCADE,
+                catalog_id TEXT NOT NULL REFERENCES catalog(id),
+                bed_id TEXT,
+                x REAL NOT NULL,
+                y REAL NOT NULL,
+                quantity INTEGER NOT NULL DEFAULT 1,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_layout_plants_layout ON layout_plants(layout_id);
+
+            CREATE TABLE rotation_plans (
+                id TEXT PRIMARY KEY,
+                garden_id TEXT NOT NULL REFERENCES gardens(id) ON DELETE CASCADE,
+                season TEXT NOT NULL,
+                plant_family TEXT NOT NULL,
+                notes TEXT,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+            CREATE INDEX idx_rotation_garden ON rotation_plans(garden_id);
+            "#,
+        ),
     ])
 }
 
@@ -328,5 +364,22 @@ mod tests {
             )
             .unwrap();
         assert_eq!(n, 1);
+    }
+
+    #[test]
+    fn migration_five_adds_layout_tables() {
+        let mut conn = Connection::open_in_memory().unwrap();
+        migrations().to_latest(&mut conn).unwrap();
+
+        for table in ["layouts", "layout_plants", "rotation_plans"] {
+            let n: i64 = conn
+                .query_row(
+                    "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name=?1",
+                    [table],
+                    |r| r.get(0),
+                )
+                .unwrap();
+            assert_eq!(n, 1, "missing table {table}");
+        }
     }
 }
