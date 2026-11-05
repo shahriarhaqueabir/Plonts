@@ -465,3 +465,31 @@ pub struct Tool {
     pub notes: Option<String>,
     pub maintenance_due: bool,
 }
+
+// ---------- Images ----------
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ImageAttribution {
+    pub license: String,
+    pub attribution: String,
+}
+
+/// Fully-resolved image URLs + attribution for one plant.
+/// Fallback order is enforced by the frontend: override -> species -> category -> generic.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct PlantImage {
+    pub catalog_id: String,
+    pub override_url: Option<String>,
+    pub species_url: Option<String>,
+    pub category_url: Option<String>,
+    pub generic_url: String,
+    pub attribution: Option<ImageAttribution>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Credit {
+    pub source: String,
+    pub license: String,
+    pub url: Option<String>,
+    pub note: Option<String>,
+}

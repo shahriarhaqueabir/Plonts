@@ -146,6 +146,10 @@ pub struct CatalogRecord {
     pub seasonality: Seasonality,
     pub companions: Vec<String>,
     pub antagonists: Vec<String>,
+    pub image_asset_id: Option<String>,
+    pub image_path: Option<String>,
+    pub image_license: Option<String>,
+    pub image_attribution: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -384,6 +388,10 @@ pub fn synthesize_catalog(raw: &RawCatalogPlant, kb: Option<&RawKbEntry>) -> Cat
         seasonality,
         companions: raw.companions.clone(),
         antagonists: raw.antagonists.clone(),
+        image_asset_id: None,
+        image_path: None,
+        image_license: None,
+        image_attribution: None,
     }
 }
 
