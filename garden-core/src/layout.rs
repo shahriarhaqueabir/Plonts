@@ -6,6 +6,12 @@ pub const GRID_CM: f64 = 10.0;
 /// Approximate mature spacing (circle diameter, cm) for a plant, keyed off its
 /// primary category. Per-plant spacing data is a future content-pack addition;
 /// this is the MVP fallback shared by the canvas renderer and warning engine.
+/// Effective spacing (cm) for a plant: per-plant override when available, else the
+/// category-based MVP fallback.
+pub fn spacing_cm(category: &str, override_cm: Option<f64>) -> f64 {
+    override_cm.unwrap_or_else(|| default_spacing_cm(category))
+}
+
 pub fn default_spacing_cm(category: &str) -> f64 {
     let c = category.to_ascii_lowercase();
     if c.contains("tree") {

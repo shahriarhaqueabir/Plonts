@@ -396,6 +396,11 @@ pub fn migrations() -> Migrations<'static> {
             );
             "#,
         ),
+        M::up(
+            r#"
+            ALTER TABLE catalog ADD COLUMN spacing_cm REAL;
+            "#,
+        ),
     ])
 }
 

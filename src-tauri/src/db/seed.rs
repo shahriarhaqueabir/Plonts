@@ -60,8 +60,8 @@ pub fn seed(conn: &mut Connection) -> AppResult<()> {
               growth_habit, photosynthesis_type, edible_parts, toxic_parts, pollination_type,
               sowing_season, sowing_method, stages, confidence_score, sunlight, water_requirements,
               soil_type, preferred_ph, common_pests, common_diseases, nutrient_preferences, seasonality,
-              image_asset_id, image_path, image_license, image_attribution)
-             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25,?26,?27,?28)",
+              image_asset_id, image_path, image_license, image_attribution, spacing_cm)
+             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25,?26,?27,?28,?29)",
             params![
                 c.id,
                 c.name,
@@ -91,6 +91,7 @@ pub fn seed(conn: &mut Connection) -> AppResult<()> {
                 opt(&c.image_path),
                 opt(&c.image_license),
                 opt(&c.image_attribution),
+                c.spacing_cm,
             ],
         )?;
     }

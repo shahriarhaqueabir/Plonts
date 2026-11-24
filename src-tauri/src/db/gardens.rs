@@ -77,7 +77,7 @@ pub fn create_garden(conn: &Connection, name: &str, garden_type: &str) -> AppRes
         "INSERT INTO gardens (id, name, garden_type) VALUES (?1, ?2, ?3)",
         params![id, name, garden_type],
     )?;
-    Ok(get_garden(conn, &id)?)
+    get_garden(conn, &id)
 }
 
 pub fn get_garden(conn: &Connection, id: &str) -> AppResult<Garden> {
@@ -141,7 +141,7 @@ pub fn create_bed(
             is_container as i64
         ],
     )?;
-    Ok(get_bed(conn, &id)?)
+    get_bed(conn, &id)
 }
 
 pub fn get_bed(conn: &Connection, id: &str) -> AppResult<Bed> {

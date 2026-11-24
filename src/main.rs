@@ -1,6 +1,7 @@
 mod app;
 mod canvas;
 mod components;
+mod image_cache;
 mod ipc;
 mod pages;
 

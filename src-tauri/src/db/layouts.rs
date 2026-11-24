@@ -2,7 +2,7 @@ use rusqlite::{params, Connection};
 use std::collections::HashMap;
 
 use crate::error::{AppError, AppResult};
-use garden_core::layout::{circles_overlap, default_spacing_cm, shade_conflict};
+use garden_core::layout::{circles_overlap, shade_conflict};
 use garden_core::models::{BedShape, Layout, LayoutDiff, LayoutPlant, LayoutWarning, WarningKind};
 
 #[cfg(test)]
@@ -258,14 +258,15 @@ struct PlantMeta {
     categories: Vec<String>,
     sunlight: Option<String>,
     antagonists: Vec<String>,
+    spacing_cm: Option<f64>,
 }
 
 fn plant_meta(conn: &Connection, catalog_id: &str) -> AppResult<PlantMeta> {
-    let (categories_json, sunlight): (String, Option<String>) = conn
+    let (categories_json, sunlight, spacing_cm): (String, Option<String>, Option<f64>) = conn
         .query_row(
-            "SELECT categories, sunlight FROM catalog WHERE id = ?1",
+            "SELECT categories, sunlight, spacing_cm FROM catalog WHERE id = ?1",
             params![catalog_id],
-            |r| Ok((r.get(0)?, r.get(1)?)),
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
         )
         .map_err(|_| AppError::NotFound(catalog_id.to_string()))?;
     let categories: Vec<String> = serde_json::from_str(&categories_json).unwrap_or_default();
@@ -275,11 +276,11 @@ fn plant_meta(conn: &Connection, catalog_id: &str) -> AppResult<PlantMeta> {
     let antagonists = stmt
         .query_map(params![catalog_id], |r| r.get::<_, String>(0))?
         .collect::<Result<Vec<_>, _>>()?;
-    Ok(PlantMeta { categories, sunlight, antagonists })
+    Ok(PlantMeta { categories, sunlight, antagonists, spacing_cm })
 }
 
 fn spacing_of(meta: &PlantMeta) -> f64 {
-    default_spacing_cm(meta.categories.first().map(|s| s.as_str()).unwrap_or(""))
+    garden_core::layout::spacing_cm(meta.categories.first().map(|s| s.as_str()).unwrap_or(""), meta.spacing_cm)
 }
 
 pub fn analyze_layout(conn: &Connection, layout_id: &str) -> AppResult<Vec<LayoutWarning>> {

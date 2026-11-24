@@ -84,7 +84,7 @@ pub fn create_tasks_from_text(state: State<AppState>, text: String) -> AppResult
     let conn = lock(&state)?;
     let mut out = Vec::new();
     for t in titles {
-        out.push(db::tasks::create_task(&*conn, &t, None, None)?);
+        out.push(db::tasks::create_task(&conn, &t, None, None)?);
     }
     Ok(out)
 }
@@ -92,16 +92,16 @@ pub fn create_tasks_from_text(state: State<AppState>, text: String) -> AppResult
 #[tauri::command]
 pub fn create_journal_from_text(state: State<AppState>, text: String) -> AppResult<garden_core::models::JournalEntry> {
     let conn = lock(&state)?;
-    db::journal::create_entry(&*conn, &state.app_data, None, None, &text, &[])
+    db::journal::create_entry(&conn, &state.app_data, None, None, &text, &[])
 }
 
 #[tauri::command]
 pub fn create_layout_from_text(state: State<AppState>, text: String) -> AppResult<garden_core::models::Layout> {
     let conn = lock(&state)?;
-    let gardens = db::gardens::list_gardens(&*conn)?;
+    let gardens = db::gardens::list_gardens(&conn)?;
     let garden = gardens
         .first()
         .ok_or_else(|| AppError::InvalidInput("create a garden first".into()))?;
     let name = format!("Coach draft - {}", text.chars().take(40).collect::<String>());
-    db::layouts::create_layout(&*conn, &garden.id, &name)
+    db::layouts::create_layout(&conn, &garden.id, &name)
 }

@@ -290,7 +290,7 @@ pub fn CoachPage() -> impl IntoView {
             return;
         };
         let name = if name.trim().is_empty() {
-            path.split(['/', '\\']).last().unwrap_or("model").to_string()
+            path.split(['/', '\\']).next_back().unwrap_or("model").to_string()
         } else {
             name
         };
@@ -503,7 +503,7 @@ pub fn CoachPage() -> impl IntoView {
                                         prop:value=move || input.get()
                                         on:input=move |ev| input.set(event_target_value(&ev)) />
                                     <button class="btn-ghost" on:click=attach_photo disabled=move || sending.get()>"Attach"</button>
-                                    <button class="btn-primary" on:click=send.clone()
+                                    <button class="btn-primary" on:click=send
                                         disabled=move || sending.get() || model_status.get().is_none() || input.get().trim().is_empty()>
                                         { move || if sending.get() { "Sending..." } else { "Send" } }
                                     </button>
@@ -528,7 +528,7 @@ pub fn CoachPage() -> impl IntoView {
                                             <p class="text-sm font-bold text-stone-200">{m.name.clone()}</p>
                                             <p class="text-[10px] text-stone-500">{format!("{} · {}", human_size(m.size_bytes), match m.kind { ModelKind::Text => "text", ModelKind::Vision => "vision" })}</p>
                                         </div>
-                                        <button class="btn-ghost" on:click=do_unload.clone()>"Unload"</button>
+                                        <button class="btn-ghost" on:click=do_unload>"Unload"</button>
                                     </div>
                                 }.into_any(),
                                 None => view! { <p class="text-sm text-stone-500">"No model loaded - import one to use the Coach."</p> }.into_any(),

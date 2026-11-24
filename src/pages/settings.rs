@@ -42,10 +42,7 @@ pub fn SettingsPage() -> impl IntoView {
         };
         spawn_local(async move {
             let args = UpdateSettingsArgs { settings: updated };
-            match ipc::call::<Settings, _>("update_settings", &args).await {
-                Ok(s) => { settings.set(Some(s)); saved.set(true); }
-                Err(_) => {}
-            }
+            if let Ok(s) = ipc::call::<Settings, _>("update_settings", &args).await { settings.set(Some(s)); saved.set(true); }
         });
     };
 

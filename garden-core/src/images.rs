@@ -91,15 +91,37 @@ impl From<RawManifest> for ImageManifest {
 }
 
 /// Fill species image fields on each catalog record that has a mapped asset.
+/// Fill image fields on each catalog record using the best available source:
+/// species mapping -> first matching category mapping -> generic asset.
 pub fn assign_images(catalog: &mut [CatalogRecord], images: &PlantImages, manifest: &ImageManifest) {
     for rec in catalog.iter_mut() {
-        if let Some(asset_id) = images.species.get(&rec.id) {
-            if let Some(info) = manifest.assets.get(asset_id) {
-                rec.image_asset_id = Some(asset_id.clone());
-                rec.image_path = Some(info.path.clone());
-                rec.image_license = Some(info.license.clone());
-                rec.image_attribution = Some(info.attribution.clone());
+        // 1. species-specific
+        let mut resolved: Option<(&String, &AssetInfo)> = images
+            .species
+            .get(&rec.id)
+            .and_then(|aid| manifest.assets.get(aid).map(|info| (aid, info)));
+        // 2. category fallback
+        if resolved.is_none() {
+            for cat in &rec.categories {
+                if let Some(aid) = images.categories.get(cat) {
+                    if let Some(info) = manifest.assets.get(aid) {
+                        resolved = Some((aid, info));
+                        break;
+                    }
+                }
             }
+        }
+        // 3. generic fallback
+        if resolved.is_none() && !images.generic_asset_id.is_empty() {
+            if let Some(info) = manifest.assets.get(&images.generic_asset_id) {
+                resolved = Some((&images.generic_asset_id, info));
+            }
+        }
+        if let Some((aid, info)) = resolved {
+            rec.image_asset_id = Some(aid.clone());
+            rec.image_path = Some(info.path.clone());
+            rec.image_license = Some(info.license.clone());
+            rec.image_attribution = Some(info.attribution.clone());
         }
     }
 }
@@ -140,6 +162,7 @@ mod tests {
             image_path: None,
             image_license: None,
             image_attribution: None,
+            spacing_cm: None,
         }
     }
 

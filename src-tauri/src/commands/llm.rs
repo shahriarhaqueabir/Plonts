@@ -9,7 +9,6 @@ use crate::llm;
 use crate::state::AppState;
 use crate::storage;
 use garden_core::llm::{ChatResponse, ContextFlags, ModelInfo, ModelKind};
-use garden_core::models::Settings;
 
 fn lock_db(state: &AppState) -> AppResult<std::sync::MutexGuard<'_, rusqlite::Connection>> {
     state
@@ -29,7 +28,7 @@ fn lock_llm(state: &AppState) -> AppResult<std::sync::MutexGuard<'_, Option<llm:
 pub async fn load_model(state: State<'_, AppState>, id: String) -> AppResult<ModelInfo> {
     let info = {
         let conn = lock_db(&state)?;
-        db::models::get_model(&*conn, &id)?
+        db::models::get_model(&conn, &id)?
     };
     let loaded = llm::load_gguf(&info.id, &info.path, info.kind).await?;
     {
@@ -38,7 +37,7 @@ pub async fn load_model(state: State<'_, AppState>, id: String) -> AppResult<Mod
     }
     {
         let conn = lock_db(&state)?;
-        let _ = db::models::touch_used(&*conn, &id);
+        let _ = db::models::touch_used(&conn, &id);
     }
     Ok(info)
 }
@@ -59,7 +58,7 @@ pub fn get_model_status(state: State<AppState>) -> AppResult<Option<ModelInfo>> 
     match loaded_id {
         Some(id) => {
             let conn = lock_db(&state)?;
-            Ok(Some(db::models::get_model(&*conn, &id)?))
+            Ok(Some(db::models::get_model(&conn, &id)?))
         }
         None => Ok(None),
     }
@@ -79,7 +78,7 @@ pub async fn generate_chat(
     let (conv_id, attachment_filename) = {
         let conn = lock_db(&state)?;
         // get or create conversation
-        let conv = match db::chat::get_conversation(&*conn, &conversation_id) {
+        let conv = match db::chat::get_conversation(&conn, &conversation_id) {
             Ok(c) => c,
             Err(_) => {
                 let title = content.chars().take(40).collect::<String>();
@@ -88,16 +87,16 @@ pub async fn generate_chat(
                 } else {
                     title
                 };
-                db::chat::create_conversation(&*conn, &title, &flags)?
+                db::chat::create_conversation(&conn, &title, &flags)?
             }
         };
         // update flags
-        let _ = db::chat::update_conversation_flags(&*conn, &conv.id, &flags);
-        let msg = db::chat::insert_message(&*conn, &state.app_data, &conv.id, garden_core::llm::MessageRole::User, &content)?;
+        let _ = db::chat::update_conversation_flags(&conn, &conv.id, &flags);
+        let msg = db::chat::insert_message(&conn, &state.app_data, &conv.id, garden_core::llm::MessageRole::User, &content)?;
         let mut fname = None;
         if let Some(src) = &attachment_source_path {
             let filename = storage::save_photo_file(&state.app_data, Path::new(src))?;
-            db::chat::insert_attachment(&*conn, &state.app_data, &msg.id, &filename, mime.as_deref())?;
+            db::chat::insert_attachment(&conn, &state.app_data, &msg.id, &filename, mime.as_deref())?;
             fname = Some(filename);
         }
         (conv.id, fname)
@@ -107,7 +106,7 @@ pub async fn generate_chat(
     let (garden_ctx, zone_ctx, tasks_ctx, history) = {
         let conn = lock_db(&state)?;
         // settings
-        let settings = db::settings::get(&*conn).unwrap_or(Settings::default());
+        let settings = db::settings::get(&conn).unwrap_or_default();
         // zone context
         let zone = if flags.zone {
             Some(format!(
@@ -122,10 +121,10 @@ pub async fn generate_chat(
         // garden context
         let garden = if flags.garden {
             let mut s = String::new();
-            let gardens = db::gardens::list_gardens(&*conn).unwrap_or_default();
+            let gardens = db::gardens::list_gardens(&conn).unwrap_or_default();
             for g in &gardens {
                 s.push_str(&format!("Garden: {} ({})\n", g.name, g.garden_type));
-                if let Ok(beds) = db::gardens::list_beds(&*conn, &g.id) {
+                if let Ok(beds) = db::gardens::list_beds(&conn, &g.id) {
                     for b in beds {
                         s.push_str(&format!(
                             "  Bed: {} ({:?}x{:?} cm)\n",
@@ -134,7 +133,7 @@ pub async fn generate_chat(
                     }
                 }
             }
-            let plantings = db::planted::list_plantings(&*conn).unwrap_or_default();
+            let plantings = db::planted::list_plantings(&conn).unwrap_or_default();
             if !plantings.is_empty() {
                 s.push_str("Plantings:\n");
                 for p in plantings {
@@ -156,14 +155,14 @@ pub async fn generate_chat(
         let tasks = if flags.tasks {
             // calendar eligible this month
             let month0 = (chrono::Utc::now().month() as i32) - 1;
-            let entries = db::calendar::get_calendar(&*conn, month0, settings.hemisphere).unwrap_or_default();
+            let entries = db::calendar::get_calendar(&conn, month0, settings.hemisphere).unwrap_or_default();
             let eligible: Vec<String> = entries
                 .iter()
                 .filter(|e| e.eligible)
                 .map(|e| e.plant.name.clone())
                 .collect();
             // also open tasks
-            let open_tasks = db::tasks::list_tasks(&*conn).unwrap_or_default();
+            let open_tasks = db::tasks::list_tasks(&conn).unwrap_or_default();
             let mut s = String::new();
             if !eligible.is_empty() {
                 s.push_str("Eligible to sow this month: ");
@@ -187,7 +186,7 @@ pub async fn generate_chat(
             None
         };
         // history: all messages except the last (the one we just inserted)
-        let msgs = db::chat::list_messages(&*conn, &state.app_data, &conv_id).unwrap_or_default();
+        let msgs = db::chat::list_messages(&conn, &state.app_data, &conv_id).unwrap_or_default();
         let mut hist: Vec<(garden_core::llm::MessageRole, String)> = Vec::new();
         let n = msgs.len();
         for (i, m) in msgs.iter().enumerate() {
@@ -202,7 +201,7 @@ pub async fn generate_chat(
     // 3. Retrieve.
     let chunks = {
         let conn = lock_db(&state)?;
-        db::retrieval::retrieve(&*conn, &content, llm::MAX_RETRIEVED).unwrap_or_default()
+        db::retrieval::retrieve(&conn, &content, llm::MAX_RETRIEVED).unwrap_or_default()
     };
     let sources = llm::chunks_to_sources(&chunks);
     let grounded = !sources.is_empty();
@@ -233,25 +232,25 @@ pub async fn generate_chat(
             let path = storage::photos_dir(&state.app_data).join(fname);
             if let Ok(bytes) = std::fs::read(&path) {
                 if let Ok(img) = image::load_from_memory(&bytes) {
-                    llm::generate_with_image(&*model_arc, &system, &content, img, llm::MAX_ANSWER_TOKENS).await?
+                    llm::generate_with_image(&model_arc, &system, &content, img, llm::MAX_ANSWER_TOKENS).await?
                 } else {
-                    llm::generate_text(&*model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
+                    llm::generate_text(&model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
                 }
             } else {
-                llm::generate_text(&*model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
+                llm::generate_text(&model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
             }
         } else {
-            llm::generate_text(&*model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
+            llm::generate_text(&model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
         }
     } else {
-        llm::generate_text(&*model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
+        llm::generate_text(&model_arc, &system, &history, &content, llm::MAX_ANSWER_TOKENS).await?
     };
 
     // 6. Persist assistant message.
     let assistant_msg = {
         let conn = lock_db(&state)?;
         db::chat::insert_assistant_message(
-            &*conn,
+            &conn,
             &state.app_data,
             &conv_id,
             &generated.content,
@@ -265,7 +264,7 @@ pub async fn generate_chat(
         g.as_ref().map(|m| m.model_id.clone())
     } {
         let conn = lock_db(&state)?;
-        let _ = db::models::touch_used(&*conn, &id);
+        let _ = db::models::touch_used(&conn, &id);
     }
 
     Ok(ChatResponse {

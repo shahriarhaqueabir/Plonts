@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.rs"],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["Fraunces", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
       colors: {
         garden: {
           50: "#f0fdf4",
@@ -17,6 +22,11 @@ module.exports = {
           900: "#14532d",
           950: "#052e16",
         },
+        soil: "#F6F1E7",
+        moss: { DEFAULT: "#4F7A3A", deep: "#2F4A2A" },
+        terracotta: "#C8663F",
+        sun: "#E3B23C",
+        ink: "#2B2A25",
       },
     },
   },

@@ -56,7 +56,7 @@ pub fn resolve_plant_image(
     category: Option<&str>,
     override_filename: Option<&str>,
 ) -> PlantImage {
-    let override_url = override_filename.map(|f| crate::storage::plant_image_url(app_data, &f));
+    let override_url = override_filename.map(|f| crate::storage::plant_image_url(app_data, f));
 
     let species_url = asset_id
         .and_then(|id| manifest.assets.get(id))

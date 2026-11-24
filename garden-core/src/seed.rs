@@ -150,6 +150,9 @@ pub struct CatalogRecord {
     pub image_path: Option<String>,
     pub image_license: Option<String>,
     pub image_attribution: Option<String>,
+    /// Mature spacing diameter in cm, when known from content data. None falls back
+    /// to `default_spacing_cm(category)`.
+    pub spacing_cm: Option<f64>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -392,6 +395,7 @@ pub fn synthesize_catalog(raw: &RawCatalogPlant, kb: Option<&RawKbEntry>) -> Cat
         image_path: None,
         image_license: None,
         image_attribution: None,
+        spacing_cm: None,
     }
 }
 

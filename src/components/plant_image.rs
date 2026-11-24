@@ -1,4 +1,5 @@
 use leptos::prelude::*;
+use crate::image_cache::use_image_cache;
 
 use garden_core::models::PlantImage;
 
@@ -23,11 +24,14 @@ pub fn PlantImage(
 
     let idx = RwSignal::new(0usize);
     let n = candidates.len();
+    let exhausted = RwSignal::new(n == 0);
     let src = Signal::derive(move || candidates.get(idx.get()).cloned().unwrap_or_default());
     let advance = move |_| {
         idx.update(|i| {
             if *i + 1 < n {
                 *i += 1;
+            } else {
+                exhausted.set(true);
             }
         });
     };
@@ -37,7 +41,13 @@ pub fn PlantImage(
     };
 
     view! {
-        <img class=class_name style=move || style() src=move || src.get() on:error=advance />
+        <Show when=move || !exhausted.get() fallback=move || view! {
+            <div class=class_name style=style>
+                <span class="flex h-full w-full items-center justify-center text-stone-500">"🌿"</span>
+            </div>
+        }>
+            <img class=class_name style=style src=move || src.get() on:error=advance />
+        </Show>
     }
 }
 
@@ -47,12 +57,22 @@ pub fn PlantImage(
 pub fn PlantThumbnail(catalog_id: String, size_px: u32) -> impl IntoView {
     let image = LocalResource::new(move || {
         let id = catalog_id.clone();
-        async move { crate::ipc::get_plant_image(&id).await.ok() }
+        let cache = use_image_cache();
+        async move {
+            if let Some(cached) = cache.get(&id) {
+                return Some(cached);
+            }
+            let res = crate::ipc::get_plant_image(&id).await.ok();
+            if let Some(img) = &res {
+                cache.set(id.clone(), img.clone());
+            }
+            res
+        }
     });
 
     view! {
         <Suspense fallback=move || view! {
-            <div class="shrink-0 rounded-md bg-stone-800" style=move || format!("width:{size_px}px;height:{size_px}px")></div>
+            <div class="shrink-0 animate-pulse rounded-md bg-stone-800" style=move || format!("width:{size_px}px;height:{size_px}px")></div>
         }>
             { move || image.get().flatten().map(|img| view! {
                 <PlantImage image=img size_px=size_px />

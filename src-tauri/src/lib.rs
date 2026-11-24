@@ -16,7 +16,17 @@ pub fn run() {
         .setup(|app| {
             let dir = app.path().app_data_dir()?;
             std::fs::create_dir_all(&dir)?;
-            let resource_dir = app.path().resource_dir().unwrap_or_else(|_| dir.clone());
+            let mut resource_dir = app.path().resource_dir().unwrap_or_else(|_| dir.clone());
+            // In dev (cargo tauri dev) the bundled resources are not copied into the
+            // executable directory, so fall back to the source tree so plant images etc.
+            // resolve. Allow that directory through the asset protocol scope too.
+            if !resource_dir.join("resources").join("images").join("plants").join("manifest.json").exists() {
+                let dev = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+                if dev.join("resources").join("images").join("plants").join("manifest.json").exists() {
+                    let _ = app.asset_protocol_scope().allow_directory(&dev, true);
+                    resource_dir = dev;
+                }
+            }
             let mut conn = db::open(&dir.join("lovelygarden.db"))?;
             db::migrate(&mut conn)?;
             db::seed::ensure_seeded(&mut conn)?;

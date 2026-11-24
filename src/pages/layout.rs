@@ -1,9 +1,12 @@
+use std::collections::HashSet;
+
 use leptos::prelude::*;
 use leptos::task::spawn_local;
 use wasm_bindgen::JsCast;
-use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement, MouseEvent};
+use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement, MouseEvent, WheelEvent};
 
 use crate::{canvas, ipc};
+use crate::components::toast::show_toast;
 use garden_core::layout::{default_spacing_cm, hit_bed, hit_plant, snap_to_grid};
 use garden_core::models::{
     BedShape, Garden, Layout, LayoutDiff, LayoutPlant, LayoutWarning, RotationPlan, SearchResult,
@@ -26,6 +29,20 @@ enum Drag {
     NewBed { start_x: f64, start_y: f64, cur_x: f64, cur_y: f64 },
     Bed { index: usize, offset_x: f64, offset_y: f64 },
     Plant { id: String, offset_x: f64, offset_y: f64 },
+}
+
+/// High-level interaction state for the layout canvas. Kept as a single signal so
+/// child components / overlays can read selection + mode without re-deriving.
+#[derive(Clone)]
+struct LayoutState {
+    mode: Tool,
+    drag: Option<Drag>,
+}
+
+impl Default for LayoutState {
+    fn default() -> Self {
+        Self { mode: Tool::AddBed, drag: None }
+    }
 }
 
 #[derive(serde::Serialize)]
@@ -96,8 +113,10 @@ pub fn LayoutPage() -> impl IntoView {
     let warnings = RwSignal::new(Vec::<LayoutWarning>::new());
     let palette = RwSignal::new(Vec::<SearchResult>::new());
     let selected_plant = RwSignal::new(None::<String>);
-    let tool = RwSignal::new(Tool::AddBed);
-    let drag = RwSignal::new(None::<Drag>);
+    let layout_state = RwSignal::new(LayoutState::default());
+    // Multi-select state: sets of selected plant ids and bed indices.
+    let selected_plants = RwSignal::new(HashSet::<String>::new());
+    let selected_beds = RwSignal::new(HashSet::<usize>::new());
     let cursor = RwSignal::new((0.0_f64, 0.0_f64));
     let new_bed_sun = RwSignal::new(None::<String>);
     let next_shape_id = RwSignal::new(0_u32);
@@ -111,6 +130,9 @@ pub fn LayoutPage() -> impl IntoView {
 
     let ctx = RwSignal::new(None::<CanvasRenderingContext2d>);
     let canvas_ref = NodeRef::<leptos::html::Canvas>::new();
+    let zoom = RwSignal::new(1.0_f64);
+    let pan = RwSignal::new((0.0_f64, 0.0_f64));
+    let toast = use_context::<RwSignal<Option<String>>>().unwrap_or_else(|| RwSignal::new(None));
 
     let spacing_for = move |catalog_id: &str| -> f64 {
         palette
@@ -129,11 +151,23 @@ pub fn LayoutPage() -> impl IntoView {
         for b in beds.get().iter() {
             canvas::draw_bed(&ctx, b);
         }
+        for (i, b) in beds.get().iter().enumerate() {
+            if selected_beds.get().contains(&i) {
+                canvas::draw_bed_highlight(&ctx, b);
+            }
+        }
         for p in plants.get().iter() {
             let radius = spacing_for(&p.catalog_id) / 2.0;
             canvas::draw_plant(&ctx, p, radius);
+            if selected_plants.get().contains(&p.id) {
+                ctx.begin_path();
+                let _ = ctx.arc(canvas::px(p.x), canvas::px(p.y), canvas::px(8.0), 0.0, std::f64::consts::TAU);
+                ctx.set_stroke_style_str("#facc15");
+                ctx.set_line_width(2.0);
+                ctx.stroke();
+            }
         }
-        if let Some(d) = drag.get() {
+        if let Some(d) = layout_state.get().drag {
             match d {
                 Drag::NewBed { start_x, start_y, cur_x, cur_y } => {
                     canvas::draw_bed_rect(&ctx, start_x, start_y, cur_x, cur_y);
@@ -146,7 +180,7 @@ pub fn LayoutPage() -> impl IntoView {
                 Drag::Plant { .. } => {}
             }
         }
-        if tool.get() == Tool::AddPlant {
+        if layout_state.get().mode == Tool::AddPlant {
             if let Some(pid) = selected_plant.get() {
                 let radius = spacing_for(&pid) / 2.0;
                 let (cx, cy) = cursor.get();
@@ -158,8 +192,11 @@ pub fn LayoutPage() -> impl IntoView {
     let persist_beds = move || {
         let Some(lid) = layout_id.get() else { return; };
         let json = serde_json::to_string(&beds.get()).unwrap_or_else(|_| "[]".to_string());
+        let toast = toast;
         spawn_local(async move {
-            let _ = ipc::call::<Layout, _>("save_layout", &SaveLayoutArgs { id: lid, canvas_json: json }).await;
+            if let Err(e) = ipc::call::<Layout, _>("save_layout", &SaveLayoutArgs { id: lid, canvas_json: json }).await {
+                show_toast(toast, format!("Failed to save layout: {e}"));
+            }
         });
     };
 
@@ -224,18 +261,21 @@ pub fn LayoutPage() -> impl IntoView {
         });
     };
 
+    // The canvas element keeps its own 1000x700 coordinate space; zoom/pan are
+    // applied via CSS transform on the wrapper, so a click's offset_* is already
+    // in canvas-local pixels. Convert to cm with the base scale only.
     let canvas_pos = move |ev: &MouseEvent| -> (f64, f64) {
         (
-            snap_to_grid(ev.offset_x() as f64 / canvas::SCALE),
-            snap_to_grid(ev.offset_y() as f64 / canvas::SCALE),
+            snap_to_grid(ev.offset_x() as f64 / canvas::BASE_SCALE),
+            snap_to_grid(ev.offset_y() as f64 / canvas::BASE_SCALE),
         )
     };
 
     let on_down = move |ev: MouseEvent| {
         let (x, y) = canvas_pos(&ev);
-        match tool.get() {
+        match layout_state.get().mode {
             Tool::AddBed => {
-                drag.set(Some(Drag::NewBed { start_x: x, start_y: y, cur_x: x, cur_y: y }));
+                layout_state.update(|s| s.drag = Some(Drag::NewBed { start_x: x, start_y: y, cur_x: x, cur_y: y }));
             }
             Tool::AddPlant => {
                 let Some(pid) = selected_plant.get() else { return; };
@@ -255,12 +295,33 @@ pub fn LayoutPage() -> impl IntoView {
                 });
             }
             Tool::Select => {
+                let shift = ev.shift_key();
                 if let Some(i) = hit_plant(&plants.get(), x, y, PLANT_HIT_CM) {
                     let p = plants.get()[i].clone();
-                    drag.set(Some(Drag::Plant { id: p.id, offset_x: x - p.x, offset_y: y - p.y }));
+                    if shift {
+                        selected_plants.update(|s| {
+                            if !s.insert(p.id.clone()) { s.remove(&p.id); }
+                        });
+                    } else {
+                        selected_plants.set([p.id.clone()].into_iter().collect());
+                        selected_beds.set(HashSet::new());
+                        layout_state.update(|s| s.drag = Some(Drag::Plant { id: p.id, offset_x: x - p.x, offset_y: y - p.y }));
+                    }
                 } else if let Some(i) = hit_bed(&beds.get(), x, y) {
-                    let b = beds.get()[i].clone();
-                    drag.set(Some(Drag::Bed { index: i, offset_x: x - b.x, offset_y: y - b.y }));
+                    if shift {
+                        selected_beds.update(|s| {
+                            if !s.insert(i) { s.remove(&i); }
+                        });
+                    } else {
+                        selected_beds.set([i].into_iter().collect());
+                        selected_plants.set(HashSet::new());
+                        let b = beds.get()[i].clone();
+                        layout_state.update(|s| s.drag = Some(Drag::Bed { index: i, offset_x: x - b.x, offset_y: y - b.y }));
+                    }
+                } else if !shift {
+                    // Click on empty canvas clears the selection.
+                    selected_plants.set(HashSet::new());
+                    selected_beds.set(HashSet::new());
                 }
             }
         }
@@ -269,10 +330,10 @@ pub fn LayoutPage() -> impl IntoView {
     let on_move = move |ev: MouseEvent| {
         let (x, y) = canvas_pos(&ev);
         cursor.set((x, y));
-        if let Some(d) = drag.get() {
+        if let Some(d) = layout_state.get().drag {
             match d {
                 Drag::NewBed { start_x, start_y, .. } => {
-                    drag.set(Some(Drag::NewBed { start_x, start_y, cur_x: x, cur_y: y }));
+                    layout_state.update(|s| s.drag = Some(Drag::NewBed { start_x, start_y, cur_x: x, cur_y: y }));
                 }
                 Drag::Bed { index, offset_x, offset_y } => {
                     beds.update(|bs| {
@@ -296,7 +357,7 @@ pub fn LayoutPage() -> impl IntoView {
     };
 
     let on_up = move |_ev: MouseEvent| {
-        if let Some(d) = drag.get() {
+        if let Some(d) = layout_state.get().drag {
             match d {
                 Drag::NewBed { start_x, start_y, cur_x, cur_y } => {
                     let x = start_x.min(cur_x);
@@ -341,7 +402,7 @@ pub fn LayoutPage() -> impl IntoView {
                 }
             }
         }
-        drag.set(None);
+        layout_state.update(|s| s.drag = None);
         redraw();
     };
 
@@ -437,9 +498,9 @@ pub fn LayoutPage() -> impl IntoView {
                 </div>
 
                 <div class="mb-3 flex items-center gap-2 text-xs">
-                    <button class=move || tool_class(tool.get(), Tool::AddBed) on:click=move |_| tool.set(Tool::AddBed)>"Add bed"</button>
-                    <button class=move || tool_class(tool.get(), Tool::AddPlant) on:click=move |_| tool.set(Tool::AddPlant)>"Add plant"</button>
-                    <button class=move || tool_class(tool.get(), Tool::Select) on:click=move |_| tool.set(Tool::Select)>"Select / move"</button>
+                    <button class=move || tool_class(layout_state.get().mode, Tool::AddBed) on:click=move |_| layout_state.update(|s| s.mode = Tool::AddBed)>"Add bed"</button>
+                    <button class=move || tool_class(layout_state.get().mode, Tool::AddPlant) on:click=move |_| layout_state.update(|s| s.mode = Tool::AddPlant)>"Add plant"</button>
+                    <button class=move || tool_class(layout_state.get().mode, Tool::Select) on:click=move |_| layout_state.update(|s| s.mode = Tool::Select)>"Select / move"</button>
                     <label class="ml-4 text-stone-400">"Bed sun:"</label>
                     <select class="input w-40" on:change=move |ev| {
                         let v = event_target_value(&ev);
@@ -452,19 +513,55 @@ pub fn LayoutPage() -> impl IntoView {
                     </select>
                 </div>
 
-                <canvas
-                    node_ref=canvas_ref
-                    class="rounded-xl border border-stone-800 bg-stone-950"
-                    style="width:1000px;height:700px"
-                    on:mousedown=on_down
-                    on:mousemove=on_move
-                    on:mouseup=on_up
-                    on:mouseleave=move |_| { drag.set(None); redraw(); }
-                ></canvas>
+                <div class="mb-2 flex items-center gap-2 text-xs">
+                    <button class="btn-ghost text-[10px]" on:click=move |_| zoom.update(|z| *z = (*z * 1.2).min(4.0))>"Zoom +"</button>
+                    <button class="btn-ghost text-[10px]" on:click=move |_| zoom.update(|z| *z = (*z / 1.2).max(0.4))>"Zoom -"</button>
+                    <button class="btn-ghost text-[10px]" on:click=move |_| { zoom.set(1.0); pan.set((0.0,0.0)); }>"Reset"</button>
+                    <span class="text-stone-500">{move || format!("{:.0}%", zoom.get()*100.0)}</span>
+                    <button class="btn-ghost text-[10px] text-rose-300" on:click=move |_| {
+                        let ids: Vec<String> = selected_plants.get().iter().cloned().collect();
+                        let bed_indices: Vec<usize> = selected_beds.get().iter().cloned().collect();
+                        selected_plants.set(HashSet::new());
+                        selected_beds.set(HashSet::new());
+                        // Remove selected beds from canvas (beds are persisted via canvas_json).
+                        beds.update(|bs| {
+                            let mut to_remove = bed_indices.clone();
+                            to_remove.sort();
+                            to_remove.reverse();
+                            for i in to_remove {
+                                if i < bs.len() { bs.remove(i); }
+                            }
+                        });
+                        persist_beds();
+                        spawn_local(async move {
+                            for id in ids {
+                                let _ = ipc::call::<serde_json::Value, _>("delete_layout_plant", &IdArgs { id }).await;
+                            }
+                            reload();
+                        });
+                    }>"Delete selected"</button>
+                </div>
+                <div style=move || format!("transform: scale({}) translate({}px, {}px); transform-origin: 0 0; width:1000px; height:700px;", zoom.get(), pan.get().0, pan.get().1)>
+                    <canvas
+                        node_ref=canvas_ref
+                        class="rounded-xl border border-stone-800 bg-stone-900"
+                        style="width:1000px;height:700px"
+                        on:mousedown=on_down
+                        on:mousemove=on_move
+                        on:mouseup=on_up
+                        on:mouseleave=move |_| { layout_state.update(|s| s.drag = None); redraw(); }
+                        on:wheel=move |ev: WheelEvent| {
+                            ev.prevent_default();
+                            let d = ev.delta_y();
+                            if d < 0.0 { zoom.update(|z| *z = (*z * 1.1).min(4.0)); }
+                            else { zoom.update(|z| *z = (*z / 1.1).max(0.4)); }
+                        }
+                    ></canvas>
+                </div>
             </div>
 
             <aside class="w-80 shrink-0 space-y-4 overflow-auto border-l border-stone-800 p-4">
-                <Show when=move || tool.get() == Tool::AddPlant fallback=|| view! { <span></span> }>
+                <Show when=move || layout_state.get().mode == Tool::AddPlant fallback=|| view! { <span></span> }>
                     <section class="card p-3">
                         <h2 class="mb-2 text-xs font-black uppercase tracking-widest text-stone-500">"Plant palette"</h2>
                         <div class="max-h-64 overflow-auto">
