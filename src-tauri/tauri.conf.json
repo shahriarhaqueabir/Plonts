@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "LovelyGarden",
+  "productName": "Plonts",
   "version": "0.1.0",
-  "identifier": "com.lovelygarden.app",
+  "identifier": "com.plonts.app",
   "build": {
     "beforeDevCommand": "trunk serve",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "LovelyGarden",
+        "title": "Plonts",
         "width": 1280,
         "height": 800,
         "minWidth": 900,
