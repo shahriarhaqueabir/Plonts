@@ -145,26 +145,32 @@ flowchart LR
 | 🌐 WASM glue     | wasm-bindgen, js-sys, web-sys | JS interop                  |
 | 🧪 Tests         | cargo test (workspace)        | Rust-native                 |
 
+## 🛠️ Provisioning
+
+```bash
+# Prereqs: Rust stable, Trunk, Node/pnpm for CSS, Tauri deps for desktop
+cargo install trunk
+pnpm install
+```
+
 ## 🚀 Quick start
 
 ```bash
-# Install Trunk
-cargo install trunk
-
-# Build CSS
 pnpm css:build
+trunk serve                    # web dev
+# or: cd src-tauri && cargo tauri dev
+```
 
-# Dev (web)
-trunk serve
+## ⚡ Quick command reference
 
-# Build (release)
-pnpm build
-
-# Desktop (Tauri)
-cd src-tauri && cargo tauri dev
-
-# Tests
-cargo test --workspace
+```bash
+cargo install trunk            # install bundler
+pnpm css:build                 # build Tailwind CSS
+trunk serve                    # dev server (web/WASM)
+pnpm build                     # release web bundle
+cd src-tauri && cargo tauri dev   # desktop dev
+cargo tauri build              # desktop release build
+cargo test --workspace         # tests
 ```
 
 ## 📸 Screenshots
