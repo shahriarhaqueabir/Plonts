@@ -1,5 +1,8 @@
 # Plonts - Rust/WASM Garden App
 
+<p align="center">
+  <img src="Plonts.jpg" alt="Plonts" width="400">
+</p>
 > **Rust port of LovelyGarden**: a local-first gardening app built with
 > **Leptos CSR**, compiled to WASM by Trunk, with a Tauri v2 desktop shell.
 > Garden as a Reasoned Knowledge Graph — plants, seasons, climate as nodes. 🌿
@@ -12,6 +15,12 @@
 [![License](https://img.shields.io/badge/License-MIT-green)](#)
 
 ---
+
+## Fun things you can do
+
+- Plan your garden visually - drag plants onto a grid, see what fits
+- Track seasons and get planting reminders based on your hemisphere
+- Ask the AI coach about pests, soil, or companion planting
 
 ## 🎬 The story — why this exists
 
