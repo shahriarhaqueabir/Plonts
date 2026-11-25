@@ -3,3 +3,12 @@
 node_modules
 styles/output.css
 .DS_Store
+
+# Personal notes (private)
+.memory/
+
+# Private modules (secrets, adapters, config - never committed)
+private/
+private/secrets/
+private/adapters/
+private/config/
